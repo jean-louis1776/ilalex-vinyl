@@ -1124,4 +1124,332 @@ export const VinylList: VinylListArray[] = [
     important: true,
     original: 1970,
   },
+  {
+    id: 105,
+    name: "Movin' With Nancy",
+    artist: "Nancy Sinatra",
+    price: 4828,
+    link: "https://vinylpark.ru/catalog/nancy_sinatra/sinatra_movin_with_nancy/nancy_sinatra_movin_with_nancy_1967_38404/",
+    image: "https://vinylpark.ru/upload/iblock/1b2/l5kwh2zam703pr2x76847nmmoc3730gu.jpg",
+    repress: 1968
+  },
+  {
+    id: 106,
+    name: "The Final Cut",
+    artist: "Pink Floyd",
+    price: 5112,
+    link: "https://vinylpark.ru/catalog/pink_floyd/floyd_the_final_cut/pink_floyd_the_final_cut_1982_29330/",
+    image: "https://vinylpark.ru/upload/iblock/27b/m5a0ka7stikaun8llu7m352hndpgg7uv.jpg",
+    repress: 2017,
+    sealed: true
+  },
+  {
+    id: 107,
+    name: "The Best Of Nancy-Girl",
+    artist: "Nancy Sinatra",
+    price: 4913,
+    link: "https://vinylpark.ru/catalog/nancy_sinatra/sinatra_the_best_of_nancy_girl/nancy_sinatra_the_best_of_nancy_girl_1968_37012/",
+    image: "https://vinylpark.ru/upload/iblock/fd4/6l12zop8vc3m409bv8rdrx9s4ryfj8ee.jpg",
+    original: 1968
+  },
+  {
+    id: 108,
+    name: "A Day At The Races",
+    artist: "Queen",
+    price: 5832,
+    link: "https://vinylpark.ru/catalog/queen/queen_a_day_at_the_races_1976_18879/",
+    image: "https://vinylpark.ru/upload/iblock/921/9213b62c5389783ae0c62e23b3428c68.jpg",
+    repress: 2015,
+    sealed: true
+  },
+  {
+    id: 109,
+    name: "A Kind Of Magic",
+    artist: "Queen",
+    price: 5202,
+    link: "https://vinylpark.ru/catalog/queen/queen_a_kind_of_magic_1986_14266/",
+    image: "https://vinylpark.ru/upload/iblock/1b5/1b55f4d60d82f6989bc59551ec7de966.jpg",
+    repress: 2015,
+    sealed: true
+  },
+  {
+    id: 110,
+    name: "A Night At The Opera",
+    artist: "Queen",
+    price: 6552,
+    link: "https://vinylpark.ru/catalog/queen/queen_a_night_at_the_opera_1975_39734/",
+    image: "https://vinylpark.ru/upload/iblock/9bf/3umlpaj6q1ndl0kvdohnhf3zez3329hp.jpg",
+    repress: 2019,
+    sealed: true
+  },
+  {
+    id: 111,
+    name: "Greatest Hits (2LP)",
+    artist: "Queen",
+    price: 7632,
+    link: "https://vinylpark.ru/catalog/queen/queen_greatest_hits_2lp_1981_37118/",
+    image: "https://vinylpark.ru/upload/iblock/53b/muiryh94y8tkcyejyiv6ezb09yebvsae.jpg",
+    repress: 2016,
+    sealed: true
+  },
+  {
+    id: 112,
+    name: "Greatest Hits II (2LP)",
+    artist: "Queen",
+    price: 7632,
+    link: "https://vinylpark.ru/catalog/queen/queen_greatest_hits_ii_2lp_1991_37997/",
+    image: "https://vinylpark.ru/upload/iblock/1c0/q0d6psoo35zvukuflsnia9o0qy2qbvaa.jpg",
+    repress: 2016,
+    sealed: true
+  },
+  {
+    id: 113,
+    name: "Innuendo (2LP)",
+    artist: "Queen",
+    price: 8712,
+    link: "https://vinylpark.ru/catalog/queen/queen_innuendo_2lp_1990_37969/",
+    image: "https://vinylpark.ru/upload/iblock/7a9/o7v8dc6u5xkqcgnvzqh6yhzyyegtqiez.jpg",
+    repress: 2015,
+    sealed: true
+  },
+  {
+    id: 114,
+    name: "Made In Heaven (2LP)",
+    artist: "Queen",
+    price: 8082,
+    link: "https://vinylpark.ru/catalog/queen/queen_made_in_heaven_1995_37395/",
+    image: "https://vinylpark.ru/upload/iblock/718/3m60b9r7mnr238kv3p8kj6wxk5gml88w.jpg",
+    repress: 2015,
+    sealed: true
+  },
+  {
+    id: 115,
+    name: "Wish You Were Here",
+    artist: "Pink Floyd",
+    price: 5283,
+    link: "https://vinylpark.ru/catalog/pink_floyd/floyd_wish_you_were_here/pink_floyd_the_wall_2lp_1975_36699/",
+    image: "https://vinylpark.ru/upload/iblock/e50/mtjv610ootkf2m6go2oefkxoj00li5or.jpg",
+    repress: 2016,
+    sealed: true
+  },
+  {
+    id: 116,
+    name: "Let It Be",
+    artist: "Beatles",
+    price: 5382,
+    link: "https://vinylpark.ru/catalog/beatles/let_it_be/beatles_let_it_be_1970_35847/",
+    image: "https://vinylpark.ru/upload/iblock/4c4/wgn925304bbnf10i11rdw4m5na5rkhs0.jpg",
+    repress: 2021,
+    sealed: true
+  },
+  {
+    id: 117,
+    name: "Portrait In Musik",
+    artist: "Françoise Hardy",
+    price: 5083,
+    link: "https://vinylpark.ru/catalog/francoise_hardy/sborniki_fran_oise_hardy/fran_oise_hardy_portrait_in_musik_1965_29103/",
+    image: "https://vinylpark.ru/upload/iblock/ca5/3s4kkyrlscgrm9uknxh5t0uafm622oon.jpg",
+    original: 1965
+  },
+  {
+    id: 118,
+    name: "Blondie",
+    artist: "Blondie",
+    price: 2958,
+    link: "https://vinylpark.ru/catalog/blondie/blondie_1976_album/blondie_blondie_1977_25606/",
+    image: "https://vinylpark.ru/upload/iblock/b45/re4xwuabpapl8sf2zqgk799d9y8rfc20.jpg",
+    original: 1977
+  },
+  {
+    id: 119,
+    name: "Parallel Lines",
+    artist: "Blondie",
+    price: 4990,
+    link: "https://vinylpark.ru/catalog/blondie/parallel_lines/blondie_parallel_lines_1978_39566/",
+    image: "https://vinylpark.ru/upload/iblock/c3b/qbx1jp9ij9yf6dpmg1xhvsbqhlqg8d3j.jpg",
+    original: 1978
+  },
+  {
+    id: 120,
+    name: "About Face",
+    artist: "David Gilmour",
+    price: 6783,
+    link: "https://vinylpark.ru/catalog/david_gilmour/david_gilmour_about_face_1984_39056/",
+    image: "https://vinylpark.ru/upload/iblock/4c5/ujv07y2e5leypiilf30rfawtlgr74aot.jpg",
+    original: 1984
+  },
+  {
+    id: 121,
+    name: "Luck And Strange",
+    artist: "David Gilmour",
+    price: 7182,
+    link: "https://vinylpark.ru/catalog/david_gilmour/david_gilmour_luck_and_strange_2024_33250/",
+    image: "https://vinylpark.ru/upload/iblock/d3f/1063yacz3lkl0sqdhd0fx5c3uuo92hca.jpg",
+    original: 2024,
+    sealed: true
+  },
+  {
+    id: 122,
+    name: "On An Island",
+    artist: "David Gilmour",
+    price: 6732,
+    link: "https://vinylpark.ru/catalog/david_gilmour/david_gilmour_on_an_island_2006_24138/",
+    image: "https://vinylpark.ru/upload/iblock/67e/23xxbvcb2eoaxnlaav5ep2s7uj73vf0h.jpg",
+    repress: 2015,
+    sealed: true
+  },
+  {
+    id: 123,
+    name: "Between Two Points",
+    artist: "David Gilmour With Romany Gilmour",
+    price: 5031,
+    link: "https://vinylpark.ru/catalog/david_gilmour/david_gilmour_with_romany_gilmour_between_two_points_2025_38224/",
+    image: "https://vinylpark.ru/upload/iblock/6fc/n5c7xfqudjuna1owyw86khl8i1xrz908.jpg",
+    original: 2025,
+    sealed: true
+  },
+  {
+    id: 124,
+    name: "Second Winter (2LP, UK)",
+    artist: "Johnny Winter",
+    price: 5423,
+    link: "https://vinylpark.ru/catalog/johnny_winter/winter_second_winter/johnny_winter_second_winter_2lp_uk_1969_26564/",
+    image: "https://vinylpark.ru/upload/iblock/7ad/7g5sf0g48000xml281wxil1inrbl57r0.jpg",
+    original: 1969
+  },
+  {
+    id: 125,
+    name: "Sings The Blues",
+    artist: "Louis Armstrong",
+    price: 5508,
+    link: "https://vinylpark.ru/catalog/louis_armstrong/louis_armstrong_sings_the_blues_1954_35983/",
+    image: "https://vinylpark.ru/upload/iblock/621/azy92qrdlvd6t1wardqdwobbxbp7lr9l.jpg",
+    repress: 1961
+  },
+  {
+    id: 126,
+    name: "Night Visions (Expanded Edition) (2LP)",
+    artist: "Imagine Dragons",
+    price: 6282,
+    link: "https://vinylpark.ru/catalog/imagine_dragons/dragons_night_visions/imagine_dragons_night_visions_expanded_edition_2lp_2012_23510/",
+    image: "https://vinylpark.ru/upload/iblock/d6f/izf9mm0vunlaw5vvkoc3tfcotqr17mss.jpg",
+    repress: 2022,
+    sealed: true
+  },
+  {
+    id: 127,
+    name: "Kimono My House",
+    artist: "Sparks",
+    price: 6012,
+    link: "https://vinylpark.ru/catalog/sparks/sparks_kimono_my_house/sparks_kimono_my_house_1974_37599/",
+    image: "https://vinylpark.ru/upload/iblock/171/n2omm7oq4bygtcx4k1g46hoqeca43i1g.jpg",
+    repress: 2024,
+    sealed: true
+  },
+  {
+    id: 128,
+    name: "Planet 0712",
+    artist: "Electric Dark Souls",
+    price: 6183,
+    link: "https://vinylpark.ru/catalog/electric_dark_souls/souls_planet_0712/electric_dark_souls_planet_0712_2019_21204/",
+    image: "https://vinylpark.ru/upload/iblock/ecb/ecb20fef10f7a16b44b2991a8a7a683d.jpg",
+    original: 2019,
+    sealed: true
+  },
+  {
+    id: 129,
+    name: "From Zero",
+    artist: "Linkin Park",
+    price: 6201,
+    link: "https://vinylpark.ru/catalog/linkin_park/park_from_zero/linkin_park_from_zero_2024_37078/",
+    image: "https://vinylpark.ru/upload/iblock/a7f/ilqj932bxg44ib0jfhmrbfc6omh1w8ej.jpg",
+    original: 2024,
+    sealed: true
+  },
+  {
+    id: 130,
+    name: "The Soul Of B. B. King",
+    artist: "B.B. King",
+    price: 5933,
+    link: "https://vinylpark.ru/catalog/bb_king/b_b_king_the_soul_of_b_b_king_1963_40316/",
+    image: "https://vinylpark.ru/upload/iblock/74f/9de4ltu126x2cytmjfdgqyh46gv0bhyu.jpg",
+    repress: 1984
+  },
+  {
+    id: 131,
+    name: "Mr. Bad Guy",
+    artist: "Freddie Mercury",
+    price: 5933,
+    link: "https://vinylpark.ru/catalog/freddie_mercury/mercury_mr_bad_guy/freddie_mercury_mr_bad_guy_1985_35772/",
+    image: "https://vinylpark.ru/upload/iblock/4c5/wviii1c3sc87sg648uajcmccy57gque8.jpg",
+    original: 1985
+  },
+  {
+    id: 132,
+    name: "Origins (2LP)",
+    artist: "Imagine Dragons",
+    price: 6282,
+    link: "https://vinylpark.ru/catalog/imagine_dragons/dragons_origins/imagine_dragons_origins_2lp_2018_14260/",
+    image: "https://vinylpark.ru/upload/iblock/aae/aaee25e1cdeebfa036aff7a125bc21dd.jpg",
+    original: 2018,
+    sealed: true
+  },
+  {
+    id: 133,
+    name: "David Gilmour",
+    artist: "David Gilmour",
+    price: 6162,
+    link: "https://vinylpark.ru/catalog/david_gilmour/david_gilmoure__1978_/david_gilmour_david_gilmour_1978_36955/",
+    image: "https://vinylpark.ru/upload/iblock/116/03pmjm8i5kdwjww6di6rn3ast4yhjbrm.jpg",
+    original: 1978
+  },
+  {
+    id: 134,
+    name: "Ride The Lightning (USA)",
+    artist: "Metallica",
+    price: 6732,
+    link: "https://vinylpark.ru/catalog/metallica/metallica_ride_the_lightning/metallica_ride_the_lightning_usa_1984_38207/",
+    image: "https://vinylpark.ru/upload/iblock/c4c/o80o6ao5g1q9cbpq5n5eug5a3w6jxzvc.jpg",
+    repress: 2016,
+    sealed: true
+  },
+  {
+    id: 135,
+    name: "Master Of Puppets",
+    artist: "Metallica",
+    price: 7182,
+    link: "https://vinylpark.ru/catalog/metallica/metallica_master_of_puppets_1986_40860/",
+    image: "https://vinylpark.ru/upload/iblock/ef6/yg7eb9nugyiulg4dxy6vkzwjxnc013hn.jpg",
+    repress: 2017,
+    sealed: true
+  },
+  {
+    id: 136,
+    name: "Once (2LP)",
+    artist: "Nightwish",
+    price: 8082,
+    link: "https://vinylpark.ru/catalog/nightwish/nightwish_once_2lp_2004_38544/",
+    image: "https://vinylpark.ru/upload/iblock/b62/tt36j6t3v2ylbz5wo7vsgydwi86zukmd.jpg",
+    repress: 2025,
+    sealed: true
+  },
+  {
+    id: 137,
+    name: "Human. :||: Nature. (3LP)",
+    artist: "Nightwish",
+    price: 8091,
+    link: "https://vinylpark.ru/catalog/nightwish/nightwish_human_nature_3lp_2020_26290/",
+    image: "https://vinylpark.ru/upload/iblock/41b/uml630bwc027vv911ca6b79331iqzfzi.jpg",
+    original: 2020,
+    sealed: true
+  },
+  {
+    id: 138,
+    name: "Dark Passion Play (2LP)",
+    artist: "Nightwish",
+    price: 10081,
+    link: "https://vinylpark.ru/catalog/nightwish/nightwish_dark_passion_play_2lp_2007_17033/",
+    image: "https://vinylpark.ru/upload/iblock/f79/f79128cfad77f2e063c3588613bae683.jpg",
+    repress: 2013
+  }
 ]
