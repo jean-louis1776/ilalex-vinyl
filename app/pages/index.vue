@@ -10,6 +10,7 @@ const purchasedItems = ref<Set<number>>(new Set())
 const currentPage = ref(1) 
 const showAllPages = ref(false)
 const activeTab = ref<'all' | 'not-purchased' | 'purchased'>('all')
+const sortBy = ref<'default' | 'price-asc'>('default')
 
 // Загрузка из localStorage при монтировании
 onMounted(() => {
@@ -58,30 +59,39 @@ const extractYear = (name: string): number => {
   return yearMatch?.[1] ? parseInt(yearMatch[1]) : 9999
 }
 
-// Сортированный список
-// Фильтрованный список по табам
+// Фильтрованный и отсортированный список
 const filteredVinylList = computed(() => {
   const sorted = [...VinylList].sort((a, b) => {
     const aIsPurchased = isPurchased(a.id)
     const bIsPurchased = isPurchased(b.id)
 
-    // 1. Купленные в конец
+    // 1. Купленные в конец (всегда)
     if (aIsPurchased && !bIsPurchased) return 1
     if (!aIsPurchased && bIsPurchased) return -1
 
-    // 2. Important в начало (только среди не купленных или купленных)
+    // 2. Important в начало (всегда, независимо от сортировки)
     if (a.important && !b.important) return -1
     if (!a.important && b.important) return 1
 
-    // 3. Сортировка по артистам (алфавитный порядок)
-    const artistCompare = a.artist.localeCompare(b.artist, 'ru')
-    if (artistCompare !== 0) return artistCompare
+    // 3. Применяем выбранную сортировку
+    if (sortBy.value === 'price-asc') {
+      // Сортировка по цене (возрастание)
+      const priceA = a.price || 0
+      const priceB = b.price || 0
+      if (priceA !== priceB) return priceA - priceB
+      
+      // Если цены равны - по артистам
+      return a.artist.localeCompare(b.artist, 'ru')
+    } else {
+      // Сортировка по умолчанию (как было)
+      const artistCompare = a.artist.localeCompare(b.artist, 'ru')
+      if (artistCompare !== 0) return artistCompare
 
-    // 4. У одного артиста - сортировка по году (от старого к новому)
-    const yearA = extractYear(a.name)
-    const yearB = extractYear(b.name)
-
-    return yearA - yearB
+      // У одного артиста - сортировка по году
+      const yearA = extractYear(a.name)
+      const yearB = extractYear(b.name)
+      return yearA - yearB
+    }
   })
 
   // Применяем фильтр по табам
@@ -113,6 +123,11 @@ const changeTab = (tab: 'all' | 'not-purchased' | 'purchased') => {
   activeTab.value = tab
   currentPage.value = 1
   showAllPages.value = false
+}
+
+const changeSorting = (sort: 'default' | 'price-asc') => {
+  sortBy.value = sort
+  currentPage.value = 1
 }
 
 const visiblePages = computed(() => {
@@ -167,26 +182,39 @@ const purchasedCount = computed(() => {
 <template>
   <div class="catalog-container">
     <h2 class="catalog-title">Каталог</h2>
-    
-    <div class="tabs">
-      <button
-          :class="['tab', { active: activeTab === 'all' }]"
-          @click="changeTab('all')"
-      >
-        Все <span class="tab-count">{{ VinylList.length }}</span>
-      </button>
-      <button
-          :class="['tab', { active: activeTab === 'not-purchased' }]"
-          @click="changeTab('not-purchased')"
-      >
-        Не купленные <span class="tab-count">{{ notPurchasedCount }}</span>
-      </button>
-      <button
-          :class="['tab', { active: activeTab === 'purchased' }]"
-          @click="changeTab('purchased')"
-      >
-        Купленные <span class="tab-count">{{ purchasedCount }}</span>
-      </button>
+
+    <div class="controls-row">
+      <div class="tabs">
+        <button
+            :class="['tab', { active: activeTab === 'all' }]"
+            @click="changeTab('all')"
+        >
+          Все <span class="tab-count">{{ VinylList.length }}</span>
+        </button>
+        <button
+            :class="['tab', { active: activeTab === 'not-purchased' }]"
+            @click="changeTab('not-purchased')"
+        >
+          Не купленные <span class="tab-count">{{ notPurchasedCount }}</span>
+        </button>
+        <button
+            :class="['tab', { active: activeTab === 'purchased' }]"
+            @click="changeTab('purchased')"
+        >
+          Купленные <span class="tab-count">{{ purchasedCount }}</span>
+        </button>
+      </div>
+
+      <div class="sort-dropdown">
+        <select 
+          v-model="sortBy" 
+          class="sort-select"
+          @change="changeSorting(sortBy)"
+        >
+          <option value="default">По умолчанию</option>
+          <option value="price-asc">По возрастанию цены</option>
+        </select>
+      </div>
     </div>
 
     <div class="vinyl-list">
@@ -198,16 +226,16 @@ const purchasedCount = computed(() => {
           @toggle-purchased="togglePurchased"
       />
     </div>
-    
+
     <div v-if="totalPages > 1" class="pagination">
       <span class="pagination-label">Страницы:</span>
       <div class="pagination-pages">
         <button
             v-for="(page, index) in visiblePages"
             :key="index"
-            :class="['page-button', { 
-              active: page === currentPage, 
-              dots: page === '...' 
+            :class="['page-button', {
+              active: page === currentPage,
+              dots: page === '...'
             }]"
             @click="page === '...' ? showAllPages = true : goToPage(page as number)"
         >
@@ -327,7 +355,7 @@ const purchasedCount = computed(() => {
 
   &.dots {
     cursor: pointer;
-    
+
     &:hover {
       background: rgba(255, 255, 255, 0.2);
     }
@@ -340,15 +368,27 @@ const purchasedCount = computed(() => {
   }
 }
 
-.tabs {
+.controls-row {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
   gap: 16px;
   margin-bottom: 32px;
   flex-wrap: wrap;
 
   @media (max-width: 768px) {
-    gap: 12px;
     margin-bottom: 24px;
+  }
+}
+
+.tabs {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  flex: 1;
+
+  @media (max-width: 768px) {
+    gap: 12px;
   }
 }
 
@@ -418,4 +458,96 @@ const purchasedCount = computed(() => {
     padding: 1px 6px;
   }
 }
+
+.sort-dropdown {
+  flex-shrink: 0;
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 6px solid rgba(255, 255, 255, 0.7);
+    pointer-events: none;
+    transition: border-top-color 0.2s ease;
+  }
+
+  &:hover::after {
+    border-top-color: rgba(255, 255, 255, 0.9);
+  }
+
+  @media (max-width: 768px) {
+    &::after {
+      right: 12px;
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+      border-top: 5px solid rgba(255, 255, 255, 0.7);
+    }
+  }
+
+  @media (max-width: 480px) {
+    &::after {
+      right: 10px;
+    }
+  }
+}
+
+.sort-select {
+  padding: 10px 40px 10px 16px;
+  border: none;
+  background: rgba(255, 255, 255, 0.08);
+  color: inherit;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  min-width: 220px;
+
+  &::-ms-expand {
+    display: none;
+  }
+
+  option {
+    background: #1a1a1a;
+    color: #ffffff;
+  }
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.12);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  &:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  }
+
+  @media (max-width: 768px) {
+    padding: 8px 36px 8px 12px;
+    font-size: 0.9rem;
+    min-width: 180px;
+    background-position: right 12px center;
+  }
+
+  @media (max-width: 480px) {
+    padding: 6px 32px 6px 10px;
+    font-size: 0.85rem;
+    min-width: 100%;
+    background-position: right 10px center;
+  }
+}
+
 </style>
