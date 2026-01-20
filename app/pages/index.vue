@@ -249,6 +249,7 @@ const purchasedCount = computed(() => {
 <style scoped lang="scss">
 .catalog-container {
   max-width: 1600px;
+  width: 100%;
   margin: 0 auto;
   padding: 0 24px;
 
