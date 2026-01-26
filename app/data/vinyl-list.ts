@@ -1451,5 +1451,15 @@ export const VinylList: VinylListArray[] = [
     link: "https://vinylpark.ru/catalog/nightwish/nightwish_dark_passion_play_2lp_2007_17033/",
     image: "https://vinylpark.ru/upload/iblock/f79/f79128cfad77f2e063c3588613bae683.jpg",
     repress: 2013
+  },
+  {
+    id: 139,
+    name: "Boston, 1976",
+    artist: "Boston",
+    price: 4941,
+    link: "https://vinylpark.ru/catalog/boston/boston_album/boston_boston_1976_41091/",
+    image: "https://vinylpark.ru/upload/iblock/003/wy7swg573rhz6acpoh3r907kqwwb4lgy.jpg",
+    repress: 2017,
+    sealed: true
   }
 ]
