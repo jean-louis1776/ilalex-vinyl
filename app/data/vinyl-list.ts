@@ -1071,6 +1071,7 @@ export const VinylList: VinylListArray[] = [
     link: "https://vinylpark.ru/catalog/bruce_springsteen/bruce_springsteen_born_in_the_u_s_a_1984_40365/",
     image:
       "https://vinylpark.ru/upload/iblock/8e8/qlg0587dvm3qunc8fuyvsaqxewj4os0d.jpg",
+    repress: 1985,
   },
   {
     id: 100,
