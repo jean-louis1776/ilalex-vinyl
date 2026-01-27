@@ -1127,7 +1127,7 @@ export const VinylList: VinylListArray[] = [
   },
   {
     id: 105,
-    name: "Movin' With Nancy",
+    name: "Movin' With Nancy, 1967",
     artist: "Nancy Sinatra",
     price: 4828,
     link: "https://vinylpark.ru/catalog/nancy_sinatra/sinatra_movin_with_nancy/nancy_sinatra_movin_with_nancy_1967_38404/",
@@ -1136,7 +1136,7 @@ export const VinylList: VinylListArray[] = [
   },
   {
     id: 106,
-    name: "The Final Cut",
+    name: "The Final Cut, 1982",
     artist: "Pink Floyd",
     price: 5112,
     link: "https://vinylpark.ru/catalog/pink_floyd/floyd_the_final_cut/pink_floyd_the_final_cut_1982_29330/",
@@ -1146,7 +1146,7 @@ export const VinylList: VinylListArray[] = [
   },
   {
     id: 107,
-    name: "The Best Of Nancy-Girl",
+    name: "The Best Of Nancy-Girl, 1968",
     artist: "Nancy Sinatra",
     price: 4913,
     link: "https://vinylpark.ru/catalog/nancy_sinatra/sinatra_the_best_of_nancy_girl/nancy_sinatra_the_best_of_nancy_girl_1968_37012/",
@@ -1155,7 +1155,7 @@ export const VinylList: VinylListArray[] = [
   },
   {
     id: 108,
-    name: "A Day At The Races",
+    name: "A Day At The Races, 1976",
     artist: "Queen",
     price: 5832,
     link: "https://vinylpark.ru/catalog/queen/queen_a_day_at_the_races_1976_18879/",
@@ -1165,7 +1165,7 @@ export const VinylList: VinylListArray[] = [
   },
   {
     id: 109,
-    name: "A Kind Of Magic",
+    name: "A Kind Of Magic, 1986",
     artist: "Queen",
     price: 5202,
     link: "https://vinylpark.ru/catalog/queen/queen_a_kind_of_magic_1986_14266/",
@@ -1175,7 +1175,7 @@ export const VinylList: VinylListArray[] = [
   },
   {
     id: 110,
-    name: "A Night At The Opera",
+    name: "A Night At The Opera, 1975",
     artist: "Queen",
     price: 6552,
     link: "https://vinylpark.ru/catalog/queen/queen_a_night_at_the_opera_1975_39734/",
@@ -1185,7 +1185,7 @@ export const VinylList: VinylListArray[] = [
   },
   {
     id: 111,
-    name: "Greatest Hits (2LP)",
+    name: "Greatest Hits (2LP), 1981",
     artist: "Queen",
     price: 7632,
     link: "https://vinylpark.ru/catalog/queen/queen_greatest_hits_2lp_1981_37118/",
@@ -1195,7 +1195,7 @@ export const VinylList: VinylListArray[] = [
   },
   {
     id: 112,
-    name: "Greatest Hits II (2LP)",
+    name: "Greatest Hits II (2LP), 1991",
     artist: "Queen",
     price: 7632,
     link: "https://vinylpark.ru/catalog/queen/queen_greatest_hits_ii_2lp_1991_37997/",
@@ -1205,7 +1205,7 @@ export const VinylList: VinylListArray[] = [
   },
   {
     id: 113,
-    name: "Innuendo (2LP)",
+    name: "Innuendo (2LP), 1990",
     artist: "Queen",
     price: 8712,
     link: "https://vinylpark.ru/catalog/queen/queen_innuendo_2lp_1990_37969/",
@@ -1215,7 +1215,7 @@ export const VinylList: VinylListArray[] = [
   },
   {
     id: 114,
-    name: "Made In Heaven (2LP)",
+    name: "Made In Heaven (2LP), 1995",
     artist: "Queen",
     price: 8082,
     link: "https://vinylpark.ru/catalog/queen/queen_made_in_heaven_1995_37395/",
@@ -1225,7 +1225,7 @@ export const VinylList: VinylListArray[] = [
   },
   {
     id: 115,
-    name: "Wish You Were Here",
+    name: "Wish You Were Here, 1975",
     artist: "Pink Floyd",
     price: 5283,
     link: "https://vinylpark.ru/catalog/pink_floyd/floyd_wish_you_were_here/pink_floyd_the_wall_2lp_1975_36699/",
@@ -1235,7 +1235,7 @@ export const VinylList: VinylListArray[] = [
   },
   {
     id: 116,
-    name: "Let It Be",
+    name: "Let It Be, 1970",
     artist: "Beatles",
     price: 5382,
     link: "https://vinylpark.ru/catalog/beatles/let_it_be/beatles_let_it_be_1970_35847/",
@@ -1245,7 +1245,7 @@ export const VinylList: VinylListArray[] = [
   },
   {
     id: 117,
-    name: "Portrait In Musik",
+    name: "Portrait In Musik, 1965",
     artist: "Françoise Hardy",
     price: 5083,
     link: "https://vinylpark.ru/catalog/francoise_hardy/sborniki_fran_oise_hardy/fran_oise_hardy_portrait_in_musik_1965_29103/",
@@ -1254,7 +1254,7 @@ export const VinylList: VinylListArray[] = [
   },
   {
     id: 118,
-    name: "Blondie",
+    name: "Blondie, 1977",
     artist: "Blondie",
     price: 2958,
     link: "https://vinylpark.ru/catalog/blondie/blondie_1976_album/blondie_blondie_1977_25606/",
@@ -1263,7 +1263,7 @@ export const VinylList: VinylListArray[] = [
   },
   {
     id: 119,
-    name: "Parallel Lines",
+    name: "Parallel Lines, 1978",
     artist: "Blondie",
     price: 4990,
     link: "https://vinylpark.ru/catalog/blondie/parallel_lines/blondie_parallel_lines_1978_39566/",
@@ -1272,7 +1272,7 @@ export const VinylList: VinylListArray[] = [
   },
   {
     id: 120,
-    name: "About Face",
+    name: "About Face, 1984",
     artist: "David Gilmour",
     price: 6783,
     link: "https://vinylpark.ru/catalog/david_gilmour/david_gilmour_about_face_1984_39056/",
@@ -1281,7 +1281,7 @@ export const VinylList: VinylListArray[] = [
   },
   {
     id: 121,
-    name: "Luck And Strange",
+    name: "Luck And Strange, 2024",
     artist: "David Gilmour",
     price: 7182,
     link: "https://vinylpark.ru/catalog/david_gilmour/david_gilmour_luck_and_strange_2024_33250/",
@@ -1291,7 +1291,7 @@ export const VinylList: VinylListArray[] = [
   },
   {
     id: 122,
-    name: "On An Island",
+    name: "On An Island, 2006",
     artist: "David Gilmour",
     price: 6732,
     link: "https://vinylpark.ru/catalog/david_gilmour/david_gilmour_on_an_island_2006_24138/",
@@ -1301,7 +1301,7 @@ export const VinylList: VinylListArray[] = [
   },
   {
     id: 123,
-    name: "Between Two Points",
+    name: "Between Two Points, 2025",
     artist: "David Gilmour With Romany Gilmour",
     price: 5031,
     link: "https://vinylpark.ru/catalog/david_gilmour/david_gilmour_with_romany_gilmour_between_two_points_2025_38224/",
@@ -1311,7 +1311,7 @@ export const VinylList: VinylListArray[] = [
   },
   {
     id: 124,
-    name: "Second Winter (2LP, UK)",
+    name: "Second Winter (2LP, UK), 1969",
     artist: "Johnny Winter",
     price: 5423,
     link: "https://vinylpark.ru/catalog/johnny_winter/winter_second_winter/johnny_winter_second_winter_2lp_uk_1969_26564/",
@@ -1320,7 +1320,7 @@ export const VinylList: VinylListArray[] = [
   },
   {
     id: 125,
-    name: "Sings The Blues",
+    name: "Sings The Blues, 1954",
     artist: "Louis Armstrong",
     price: 5508,
     link: "https://vinylpark.ru/catalog/louis_armstrong/louis_armstrong_sings_the_blues_1954_35983/",
@@ -1329,7 +1329,7 @@ export const VinylList: VinylListArray[] = [
   },
   {
     id: 126,
-    name: "Night Visions (Expanded Edition) (2LP)",
+    name: "Night Visions (Expanded Edition) (2LP), 2012",
     artist: "Imagine Dragons",
     price: 6282,
     link: "https://vinylpark.ru/catalog/imagine_dragons/dragons_night_visions/imagine_dragons_night_visions_expanded_edition_2lp_2012_23510/",
@@ -1339,7 +1339,7 @@ export const VinylList: VinylListArray[] = [
   },
   {
     id: 127,
-    name: "Kimono My House",
+    name: "Kimono My House, 1974",
     artist: "Sparks",
     price: 6012,
     link: "https://vinylpark.ru/catalog/sparks/sparks_kimono_my_house/sparks_kimono_my_house_1974_37599/",
@@ -1349,7 +1349,7 @@ export const VinylList: VinylListArray[] = [
   },
   {
     id: 128,
-    name: "Planet 0712",
+    name: "Planet 0712, 2019",
     artist: "Electric Dark Souls",
     price: 6183,
     link: "https://vinylpark.ru/catalog/electric_dark_souls/souls_planet_0712/electric_dark_souls_planet_0712_2019_21204/",
@@ -1359,7 +1359,7 @@ export const VinylList: VinylListArray[] = [
   },
   {
     id: 129,
-    name: "From Zero",
+    name: "From Zero, 2024",
     artist: "Linkin Park",
     price: 6201,
     link: "https://vinylpark.ru/catalog/linkin_park/park_from_zero/linkin_park_from_zero_2024_37078/",
@@ -1369,7 +1369,7 @@ export const VinylList: VinylListArray[] = [
   },
   {
     id: 130,
-    name: "The Soul Of B. B. King",
+    name: "The Soul Of B. B. King, 1963",
     artist: "B.B. King",
     price: 5933,
     link: "https://vinylpark.ru/catalog/bb_king/b_b_king_the_soul_of_b_b_king_1963_40316/",
@@ -1378,7 +1378,7 @@ export const VinylList: VinylListArray[] = [
   },
   {
     id: 131,
-    name: "Mr. Bad Guy",
+    name: "Mr. Bad Guy, 1985",
     artist: "Freddie Mercury",
     price: 5933,
     link: "https://vinylpark.ru/catalog/freddie_mercury/mercury_mr_bad_guy/freddie_mercury_mr_bad_guy_1985_35772/",
@@ -1387,17 +1387,17 @@ export const VinylList: VinylListArray[] = [
   },
   {
     id: 132,
-    name: "Origins (2LP)",
+    name: "Origins (2LP), 2018",
     artist: "Imagine Dragons",
     price: 6282,
-    link: "https://vinylpark.ru/catalog/imagine_dragons/dragons_origins/imagine_dragons_origins_2lp_2018_14260/",
-    image: "https://vinylpark.ru/upload/iblock/aae/aaee25e1cdeebfa036aff7a125bc21dd.jpg",
+    link: "https://vinylpark.ru/catalog/imagine_dragons/imagine_dragons_origins_2lp_2018_14258/",
+    image: "https://vinylpark.ru/upload/iblock/b37/b37a141b31c4267bdc5e6e88cb619f1a.jpg",
     original: 2018,
     sealed: true
   },
   {
     id: 133,
-    name: "David Gilmour",
+    name: "David Gilmour, 1978",
     artist: "David Gilmour",
     price: 6162,
     link: "https://vinylpark.ru/catalog/david_gilmour/david_gilmoure__1978_/david_gilmour_david_gilmour_1978_36955/",
@@ -1406,7 +1406,7 @@ export const VinylList: VinylListArray[] = [
   },
   {
     id: 134,
-    name: "Ride The Lightning (USA)",
+    name: "Ride The Lightning (USA), 1984",
     artist: "Metallica",
     price: 6732,
     link: "https://vinylpark.ru/catalog/metallica/metallica_ride_the_lightning/metallica_ride_the_lightning_usa_1984_38207/",
@@ -1416,7 +1416,7 @@ export const VinylList: VinylListArray[] = [
   },
   {
     id: 135,
-    name: "Master Of Puppets",
+    name: "Master Of Puppets, 1986",
     artist: "Metallica",
     price: 7182,
     link: "https://vinylpark.ru/catalog/metallica/metallica_master_of_puppets_1986_40860/",
@@ -1426,7 +1426,7 @@ export const VinylList: VinylListArray[] = [
   },
   {
     id: 136,
-    name: "Once (2LP)",
+    name: "Once (2LP), 2004",
     artist: "Nightwish",
     price: 8082,
     link: "https://vinylpark.ru/catalog/nightwish/nightwish_once_2lp_2004_38544/",
@@ -1436,7 +1436,7 @@ export const VinylList: VinylListArray[] = [
   },
   {
     id: 137,
-    name: "Human. :||: Nature. (3LP)",
+    name: "Human. :||: Nature. (3LP), 2020",
     artist: "Nightwish",
     price: 8091,
     link: "https://vinylpark.ru/catalog/nightwish/nightwish_human_nature_3lp_2020_26290/",
@@ -1446,7 +1446,7 @@ export const VinylList: VinylListArray[] = [
   },
   {
     id: 138,
-    name: "Dark Passion Play (2LP)",
+    name: "Dark Passion Play (2LP), 2007",
     artist: "Nightwish",
     price: 10081,
     link: "https://vinylpark.ru/catalog/nightwish/nightwish_dark_passion_play_2lp_2007_17033/",
@@ -1460,6 +1460,36 @@ export const VinylList: VinylListArray[] = [
     price: 4941,
     link: "https://vinylpark.ru/catalog/boston/boston_album/boston_boston_1976_41091/",
     image: "https://vinylpark.ru/upload/iblock/003/wy7swg573rhz6acpoh3r907kqwwb4lgy.jpg",
+    repress: 2017,
+    sealed: true
+  },
+  {
+    id: 140,
+    name: "Clap Hands, Here Comes Charlie!, 1961",
+    artist: "Ella Fitzgerald",
+    price: 3582,
+    link: "https://vinylpark.ru/catalog/ella_fitzgerald/ella_fitzgerald_clap_hands_here_comes_charlie_1961_41129/",
+    image: "https://vinylpark.ru/upload/iblock/549/am65leaxqy7xucvl8mo4qyhy8zeu1x2b.jpg",
+    repress: 2016,
+    sealed: true
+  },
+  {
+    id: 141,
+    name: "Together, 2019",
+    artist: "Frank Sinatra & Friends",
+    price: 4482,
+    link: "https://vinylpark.ru/catalog/frank_sinatra/frank_sinatra_friends_together_2019_41137/",
+    image: "https://vinylpark.ru/upload/iblock/786/uus3f0bdy17fbs4qvl59j10wxpx3gjfs.jpg",
+    original: 2019,
+    sealed: true
+  },
+  {
+    id: 142,
+    name: "Gladiator (Music From The Motion Picture) (2LP), 2000",
+    artist: "Hans Zimmer And Lisa Gerrard",
+    price: 6012,
+    link: "https://vinylpark.ru/catalog/hans_zimmer/hans_zimmer_and_lisa_gerrard_gladiator_music_from_the_motion_picture_2lp_20_29214/",
+    image: "https://vinylpark.ru/upload/iblock/0f9/c1sopcmoz98vce3hpnlqjl9xkv6eu1p3.jpg",
     repress: 2017,
     sealed: true
   }
