@@ -21,7 +21,6 @@
   }
 }
 
-// Адаптивность для разных экранов
 @media (max-width: 768px) {
   .header {
     border-radius: 0 0 calc(12px * 1) calc(12px * 1);

@@ -550,5 +550,4 @@ const purchasedCount = computed(() => {
     background-position: right 10px center;
   }
 }
-
 </style>

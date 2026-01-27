@@ -1,12 +1,11 @@
 <script setup lang="ts">
 import type { VinylListArray } from '~/data/vinyl-list';
 
-interface Props {
+const props = defineProps<{
   card: VinylListArray
   isPurchased: boolean
-}
+}>()
 
-const props = defineProps<Props>()
 const emit = defineEmits<{
   togglePurchased: [id: number]
 }>()
@@ -69,7 +68,6 @@ const handleTogglePurchased = () => {
 </template>
 
 <style scoped lang="scss">
-// Переменные
 $color-primary: #4CAF50;
 $color-danger: #e63946;
 $color-info: #ffd93a;
@@ -91,7 +89,6 @@ $border-radius-sm: 2px;
 $border-radius-base: 4px;
 $border-radius-lg: 20px;
 
-// Миксины
 @mixin flex-center {
   display: flex;
   align-items: center;
@@ -395,7 +392,6 @@ $border-radius-lg: 20px;
   }
 }
 
-// Transitions
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity $transition-fade ease;

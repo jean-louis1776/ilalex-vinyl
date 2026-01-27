@@ -50,7 +50,6 @@ const currentYear = computed(() => new Date().getFullYear())
   }
 }
 
-// Адаптивность для мобильных устройств
 @media (max-width: 768px) {
   .footer {
     padding: 1.5rem 0;
