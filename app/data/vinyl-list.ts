@@ -1492,5 +1492,42 @@ export const VinylList: VinylListArray[] = [
     image: "https://vinylpark.ru/upload/iblock/0f9/c1sopcmoz98vce3hpnlqjl9xkv6eu1p3.jpg",
     repress: 2017,
     sealed: true
+  },
+  {
+    id: 143,
+    name: "Ihre Grossen Erfolge, 1984",
+    artist: "Marlene Dietrich",
+    price: 2363,
+    link: "https://vinylpark.ru/catalog/marlene_dietrich/marlene_dietrich_ihre_grossen_erfolge_1984_41234/",
+    image: "https://vinylpark.ru/upload/iblock/b36/vzf6ocnnhbecp4nvopzkzmctbt3ckma0.jpg",
+    original: 1984
+  },
+  {
+    id: 144,
+    name: "Lost Highway, 2007",
+    artist: "Bon Jovi",
+    price: 12051,
+    link: "https://vinylpark.ru/catalog/bon_jovi/jovi_lost_highway/bon_jovi_lost_highway_2007_41224/",
+    image: "https://vinylpark.ru/upload/iblock/0d3/c1k7wwty8fdg3hge4am1v1fl2g55lweg.jpg",
+    repress: 2016,
+    sealed: true
+  },
+  {
+    id: 145,
+    name: "Remember Marilyn (booklet), 1962",
+    artist: "Marilyn Monroe",
+    price: 2967,
+    link: "https://vinylpark.ru/catalog/marilyn_monroe/marilyn_monroe_remember_marilyn_booklet_1962_41218/",
+    image: "https://vinylpark.ru/upload/iblock/640/ot5036y05fbcxge22r3p5h3uuzw1yv15.jpg",
+    repress: 1972
+  },
+  {
+    id: 146,
+    name: "In The Army Now, 1986",
+    artist: "Status Quo",
+    price: 3723,
+    link: "https://vinylpark.ru/catalog/status_quo/quo_in_the_army_now/status_quo_in_the_army_now_1986_41221/",
+    image: "https://vinylpark.ru/upload/iblock/156/wcg2yelg9blcfj2kxo2z0plriefchjje.jpg",
+    original: 1986
   }
 ]
