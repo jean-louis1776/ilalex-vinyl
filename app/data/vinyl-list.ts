@@ -1529,5 +1529,14 @@ export const VinylList: VinylListArray[] = [
     link: "https://vinylpark.ru/catalog/status_quo/quo_in_the_army_now/status_quo_in_the_army_now_1986_41221/",
     image: "https://vinylpark.ru/upload/iblock/156/wcg2yelg9blcfj2kxo2z0plriefchjje.jpg",
     original: 1986
-  }
+  },
+  {
+    id: 147,
+    name: "Hello Satchmo - His Golden Favorites, 1974",
+    artist: "Louis Armstrong",
+    price: 3213,
+    link: "https://vinylpark.ru/catalog/louis_armstrong/louis_armstrong_hello_satchmo_his_golden_favorites_1974_41265/",
+    image: "https://vinylpark.ru/upload/iblock/482/351bipj843hlpg00kepxe28ah717o9ze.jpg",
+    original: 1974
+  },
 ]
