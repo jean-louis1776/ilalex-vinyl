@@ -1539,4 +1539,13 @@ export const VinylList: VinylListArray[] = [
     image: "https://vinylpark.ru/upload/iblock/482/351bipj843hlpg00kepxe28ah717o9ze.jpg",
     original: 1974
   },
+  {
+    id: 148,
+    name: "Supergold (2LP), 1979",
+    artist: "Frank Sinatra",
+    price: 3723,
+    link: "https://vinylpark.ru/catalog/frank_sinatra/sborniki__frank_sinatra/frank_sinatra_supergold_2lp_1979_41289/",
+    image: "https://vinylpark.ru/upload/iblock/04a/60bm6gs1ms80j3pa0wa9hzkz2jpr7924.jpg",
+    original: 1979
+  },
 ]
