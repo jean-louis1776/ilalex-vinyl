@@ -1548,4 +1548,22 @@ export const VinylList: VinylListArray[] = [
     image: "https://vinylpark.ru/upload/iblock/04a/60bm6gs1ms80j3pa0wa9hzkz2jpr7924.jpg",
     original: 1979
   },
+  {
+    id: 149,
+    name: "Auberge, 1991",
+    artist: "Chris Rea",
+    price: 9333,
+    link: "https://vinylpark.ru/catalog/chris_rea/rea_auberge/chris_rea_auberge_1991_41335/",
+    image: "https://vinylpark.ru/upload/iblock/958/hxhsfcehc2udidyszq3adfym0ls6x0u9.jpg",
+    original: 1991
+  },
+  {
+    id: 150,
+    name: "Body Talk (1-st, USA), 1973",
+    artist: "George Benson",
+    price: 3987,
+    link: "https://vinylpark.ru/catalog/george_benson/benson_body_talk/george_benson_body_talk_1_st_usa_1973_41351/",
+    image: "https://vinylpark.ru/upload/iblock/8d8/qhps59rcjmx3iqpbmgjtx5jt2hp1bk16.jpg",
+    original: 1973
+  },
 ]
