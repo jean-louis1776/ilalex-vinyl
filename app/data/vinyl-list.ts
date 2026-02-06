@@ -1566,4 +1566,22 @@ export const VinylList: VinylListArray[] = [
     image: "https://vinylpark.ru/upload/iblock/8d8/qhps59rcjmx3iqpbmgjtx5jt2hp1bk16.jpg",
     original: 1973
   },
+  {
+    id: 151,
+    name: "The Hits, 2018",
+    artist: "Frank Sinatra",
+    price: 4995,
+    link: "https://vinylpark.ru/catalog/frank_sinatra/sborniki__frank_sinatra/frank_sinatra_the_hits_2018_41363/",
+    image: "https://vinylpark.ru/upload/iblock/8d5/3inddk78qs935um85ku8iq1ket1vh1ma.jpg",
+    repress: 2025
+  },
+  {
+    id: 152,
+    name: "This Is The Andrews Sisters, 2020",
+    artist: "Andrews Sisters",
+    price: 4482,
+    link: "https://vinylpark.ru/catalog/andrews_sisters/sisters_this_is_the_andrews_sisters/andrews_sisters_this_is_the_andrews_sisters_2020_41366/",
+    image: "https://vinylpark.ru/upload/iblock/45b/gsdmdan1qv4gxisuue1elmmzyy6oak3z.jpg",
+    original: 2020
+  },
 ]
