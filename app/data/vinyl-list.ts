@@ -1584,4 +1584,13 @@ export const VinylList: VinylListArray[] = [
     image: "https://vinylpark.ru/upload/iblock/45b/gsdmdan1qv4gxisuue1elmmzyy6oak3z.jpg",
     original: 2020
   },
+  {
+    id: 153,
+    name: "Signature Collection (2LP), 2014",
+    artist: "B.B. King",
+    price: 7182,
+    link: "https://vinylpark.ru/catalog/bb_king/b_b_king_signature_collection_2lp_2014_41382/",
+    image: "https://vinylpark.ru/upload/iblock/007/asi9z3iekbxs6l3dl2tlgl40q9pn9lfy.jpg",
+    original: 2014
+  },
 ]
