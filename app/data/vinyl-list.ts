@@ -1593,4 +1593,24 @@ export const VinylList: VinylListArray[] = [
     image: "https://vinylpark.ru/upload/iblock/007/asi9z3iekbxs6l3dl2tlgl40q9pn9lfy.jpg",
     original: 2014
   },
+  {
+    id: 154,
+    name: "One More From The Road (2LP), 1976",
+    artist: "Lynyrd Skynyrd",
+    price: 5994,
+    link: "https://vinylpark.ru/catalog/lynyrd_skynyrd/lynyrd_skynyrd_one_more_from_the_road_2lp_1976_41433/",
+    image: "https://vinylpark.ru/upload/iblock/f78/5sa5aiauw10byi1lbmylzq9ogebe2umf.jpg",
+    repress: 2015,
+    sealed: true
+  },
+  {
+    id: 155,
+    name: "Terrapin Station, 1977",
+    artist: "Grateful Dead",
+    price: 4482,
+    link: "https://vinylpark.ru/catalog/grateful_dead/grateful_dead_terrapin_station_1977_41416/",
+    image: "https://vinylpark.ru/upload/iblock/776/6c14ut61g68ipd5qhckq2qe3ebru7h9p.jpg",
+    repress: 2024,
+    sealed: true
+  },
 ]
