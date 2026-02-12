@@ -1613,4 +1613,24 @@ export const VinylList: VinylListArray[] = [
     repress: 2024,
     sealed: true
   },
+  {
+    id: 156,
+    name: "Music from the Motion Picture Soundtrack-Back To The Future, 1985",
+    artist: "Various",
+    price: 4932,
+    link: "https://vinylpark.ru/catalog/various/various_music_from_the_motion_picture_soundtrack_back_to_the_future_1985_41438/",
+    image: "https://vinylpark.ru/upload/iblock/2d2/7ik7ikm2dvwj6hqlr3p189g5j6e6e1q1.jpg",
+    repress: 2021,
+    sealed: true
+  },
+  {
+    id: 157,
+    name: "Many States Of Independence, 1982",
+    artist: "Donna Summer",
+    price: 3996,
+    link: "https://vinylpark.ru/catalog/donna_summer/donna_summer_many_states_of_independence_1982_41452/",
+    image: "https://vinylpark.ru/upload/iblock/ced/uw8fy37ilj56me01vgqgjuxhmt1ttyy0.jpg",
+    repress: 2024,
+    sealed: true
+  },
 ]
