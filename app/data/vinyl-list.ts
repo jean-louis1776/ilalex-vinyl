@@ -1713,4 +1713,14 @@ export const VinylList: VinylListArray[] = [
     repress: 2021,
     sealed: true,
   },
+  {
+    id: 166,
+    name: 'Boots (USA), 1966',
+    artist: 'Nancy Sinatra',
+    price: 5994,
+    link: 'https://vinylpark.ru/catalog/nancy_sinatra/nancy_sinatra_boots_usa_1966_41542/',
+    image: 'https://vinylpark.ru/upload/iblock/a29/saogqvukny668je6y8r5jkz87o0feivk.jpg',
+    repress: 2021,
+    sealed: true,
+  },
 ]
