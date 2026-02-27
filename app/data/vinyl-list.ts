@@ -1723,4 +1723,14 @@ export const VinylList: VinylListArray[] = [
     repress: 2021,
     sealed: true,
   },
+  {
+    id: 167,
+    name: 'Wonderful World (The Best Of Louis Armstrong), 2024',
+    artist: 'Louis Armstrong',
+    price: 5994,
+    link: 'https://vinylpark.ru/catalog/louis_armstrong/louis_armstrong_wonderful_world_the_best_of_louis_armstrong_2024_41659/',
+    image: 'https://vinylpark.ru/upload/iblock/7aa/v8e6829scvftd9oi9z8cxllo2gzj18lo.jpg',
+    original: 2024,
+    sealed: true,
+  },
 ]
