@@ -1733,4 +1733,14 @@ export const VinylList: VinylListArray[] = [
     original: 2024,
     sealed: true,
   },
+  {
+    id: 168,
+    name: 'Heartbreaker (1-st, USA), 1978',
+    artist: 'Dolly Parton',
+    price: 9899,
+    link: 'https://vinylpark.ru/catalog/dolly_parton/dolly_parton_heartbreaker_1_st_usa_1978_41701/',
+    image: 'https://vinylpark.ru/upload/iblock/9c9/ao3qo2ch2diq9ams2odk639035edyuag.jpg',
+    original: 1978,
+    sealed: true,
+  },
 ]
