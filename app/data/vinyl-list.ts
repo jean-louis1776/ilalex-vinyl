@@ -1743,4 +1743,14 @@ export const VinylList: VinylListArray[] = [
     original: 1978,
     sealed: true,
   },
+  {
+    id: 169,
+    name: 'The Dark Side Of The Moon (2LP, USA), 1973',
+    artist: 'Pink Floyd',
+    price: 8082,
+    link: 'https://vinylpark.ru/catalog/pink_floyd/floyd_the_dark_side_of_the_moon/pink_floyd_the_dark_side_of_the_moon_2lp_usa_1973_41776/',
+    image: 'https://vinylpark.ru/upload/iblock/dbb/21aut7beypog8a1tuue9h05011mozbk2.jpg',
+    repress: 2022,
+    sealed: true,
+  },
 ]
