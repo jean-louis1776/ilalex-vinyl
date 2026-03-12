@@ -1753,4 +1753,13 @@ export const VinylList: VinylListArray[] = [
     repress: 2022,
     sealed: true,
   },
+  {
+    id: 170,
+    name: 'Balance Of Power, 1986',
+    artist: 'Electric Light Orchestra',
+    price: 4913,
+    link: 'https://vinylpark.ru/catalog/electric_light_orchestra/light_orchestra_balance_of_power/electric_light_orchestra_balance_of_power_1986_41897/',
+    image: 'https://vinylpark.ru/upload/iblock/9de/1g5pe0lm6znx3mnaxtmgntq7g90kthmw.jpg',
+    original: 1986,
+  },
 ]
