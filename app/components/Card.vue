@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import type { VinylListArray } from '~/data/vinyl-list';
 
 const props = defineProps<{
@@ -16,6 +16,15 @@ const emit = defineEmits<{
 const handleTogglePurchased = () => {
   emit('togglePurchased', props.card.id)
 }
+
+// Грузим обложки через image-прокси weserv: обходит защиту от хотлинка
+// на vinylpark.ru, отдаёт через CDN и ужимает в WebP (меньше трафика).
+const imgSrc = computed(() => {
+  const raw = props.card.image
+  if (!raw) return ''
+  const noScheme = raw.replace(/^https?:\/\//, '')
+  return `https://images.weserv.nl/?url=${encodeURIComponent('ssl:' + noScheme)}&w=600&q=82&output=webp`
+})
 
 // Состояние загрузки обложки
 const imgEl = ref<HTMLImageElement | null>(null)
@@ -57,7 +66,7 @@ const highlight = (text: string): string => {
       <img
           v-if="!errored"
           ref="imgEl"
-          :src="card.image"
+          :src="imgSrc"
           :alt="card.name"
           loading="lazy"
           class="cover-img"
