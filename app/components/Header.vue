@@ -1,40 +1,98 @@
 <template>
   <header class="header">
-    <h1 class="header_title">ILALEX Vinyl</h1>
+    <div class="header-inner">
+      <a href="/" class="brand">
+        <span class="brand-mark" aria-hidden="true">
+          <span class="disc"></span>
+        </span>
+        <span class="brand-text">ILALEX<span class="brand-accent">Vinyl</span></span>
+      </a>
+      <span class="brand-tag">коллекция пластинок</span>
+    </div>
   </header>
-</template> 
+</template>
 
 <style scoped lang="scss">
 .header {
-  background: linear-gradient(155deg, #A4CFDA 0%, #57ADE3 15%, #005EE9 35%, #005EE9 65%, #00ACFC 125%);
-  border-radius: 0 0 calc(12px * 1.5) calc(12px * 1.5);
-  padding: clamp(1.5rem, 4vw, 3rem) clamp(1rem, 5vw, 2rem);
-  box-shadow: 0 4px 20px rgba(0, 94, 233, 0.15);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  backdrop-filter: blur(18px);
+  background: rgba(10, 10, 12, 0.7);
+  border-bottom: 1px solid var(--border);
+}
 
-  &_title {
-    color: white;
-    font-size: clamp(1.75rem, 5vw, 3rem);
-    font-weight: 700;
-    margin: 0;
-    letter-spacing: 0.02em;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+.header-inner {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  @media (max-width: 768px) {
+    padding: 14px 16px;
   }
 }
 
-@media (max-width: 768px) {
-  .header {
-    border-radius: 0 0 calc(12px * 1) calc(12px * 1);
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--text);
+}
+
+.brand-mark {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--accent-grad);
+  box-shadow: 0 6px 20px -6px rgba(124, 92, 255, 0.6);
+  transition: transform 0.6s var(--ease);
+
+  .brand:hover & {
+    transform: rotate(180deg);
   }
 }
 
-@media (max-width: 480px) {
-  .header {
-    border-radius: 0 0 calc(12px * 0.75) calc(12px * 0.75);
+.disc {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--bg);
+  box-shadow: 0 0 0 4px rgba(10, 10, 12, 0.25);
+}
 
-    &__title {
-      letter-spacing: 0.01em;
-    }
+.brand-text {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+
+  @media (max-width: 480px) {
+    font-size: 1.15rem;
+  }
+}
+
+.brand-accent {
+  margin-left: 6px;
+  background: var(--accent-grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.brand-tag {
+  margin-left: auto;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  letter-spacing: 0.02em;
+
+  @media (max-width: 600px) {
+    display: none;
   }
 }
 </style>
-

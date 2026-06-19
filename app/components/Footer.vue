@@ -4,63 +4,54 @@ const currentYear = computed(() => new Date().getFullYear())
 
 <template>
   <footer class="footer">
-    <div class="footer-content"> 
-      <div class="footer-info">
-        <p class="copyright">
-          © {{ currentYear }} ILALEX-Vinyl. Все права защищены.
-        </p>
-      </div>
+    <div class="footer-content">
+      <span class="footer-brand">ILALEX<span class="accent">Vinyl</span></span>
+      <p class="copyright">© {{ currentYear }} · Все права защищены</p>
     </div>
   </footer>
 </template>
 
 <style scoped lang="scss">
 .footer {
-  background: linear-gradient(135deg, #e8eaf5 0%, #f0f2f8 50%, #f8f9fd 100%);
-  color: #2d3748;
-  padding: 2rem 0;
   margin-top: auto;
-  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.08);
-  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  border-top: 1px solid var(--border);
+  background: var(--bg-soft);
+}
 
-  .footer-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 2rem;
-    display: flex;
+.footer-content {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+
+  @media (max-width: 480px) {
     justify-content: center;
-    align-items: center;
-  }
-
-  .footer-info {
     text-align: center;
-
-    .copyright {
-      margin: 0;
-      font-size: 0.95rem;
-      color: #4a5568;
-      font-weight: 400;
-      letter-spacing: 0.5px;
-      transition: color 0.3s ease;
-
-      &:hover {
-        color: #1a202c;
-      }
-    }
   }
 }
 
-@media (max-width: 768px) {
-  .footer {
-    padding: 1.5rem 0;
+.footer-brand {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--text);
 
-    .footer-content {
-      padding: 0 1rem;
-    }
-
-    .footer-info .copyright {
-      font-size: 0.85rem;
-    }
+  .accent {
+    margin-left: 4px;
+    background: var(--accent-grad);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
+}
+
+.copyright {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--text-muted);
 }
 </style>
