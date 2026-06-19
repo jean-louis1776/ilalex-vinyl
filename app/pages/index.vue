@@ -355,7 +355,7 @@ const progressPct = computed(() => totalCount ? Math.round(purchasedTotal.value 
       <span class="catalog-sub">{{ filteredVinylList.length }} из {{ totalCount }}</span>
 
       <div class="owner-zone">
-        <span v-if="isOwner" class="sync-state" :class="syncStatus">
+        <span v-if="isOwner && syncStatus !== 'idle'" class="sync-state" :class="syncStatus">
           <template v-if="syncStatus === 'saving'">Сохранение…</template>
           <template v-else-if="syncStatus === 'saved'">Сохранено ✓</template>
           <template v-else-if="syncStatus === 'error'">Ошибка сети</template>
@@ -364,11 +364,13 @@ const progressPct = computed(() => totalCount ? Math.round(purchasedTotal.value 
 
         <template v-if="isOwner">
           <button class="owner-btn is-owner" @click="logoutOwner" title="Выйти из режима владельца">
-            🔓 Владелец
+            🔓 <span class="owner-label">Владелец</span>
           </button>
         </template>
         <template v-else>
-          <button class="owner-btn" @click="showPinInput = !showPinInput">🔒 Режим владельца</button>
+          <button class="owner-btn" @click="showPinInput = !showPinInput" title="Режим владельца">
+            🔒 <span class="owner-label">Режим владельца</span>
+          </button>
         </template>
 
         <Transition name="pin-pop">
@@ -401,7 +403,7 @@ const progressPct = computed(() => totalCount ? Math.round(purchasedTotal.value 
           <span class="stat-value accent-spent">{{ fmt(spentSum) }} ₽</span>
         </div>
         <div class="stat">
-          <span class="stat-label">Осталось купить</span>
+          <span class="stat-label">Осталось</span>
           <span class="stat-value">{{ fmt(remainingSum) }} ₽</span>
         </div>
       </div>
@@ -557,6 +559,7 @@ const progressPct = computed(() => totalCount ? Math.round(purchasedTotal.value 
 .owner-zone {
   position: relative;
   margin-left: auto;
+  align-self: center;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -572,6 +575,10 @@ const progressPct = computed(() => totalCount ? Math.round(purchasedTotal.value 
 }
 
 .owner-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  min-height: 38px;
   padding: 8px 14px;
   border: 1px solid var(--border);
   background: var(--surface);
@@ -579,9 +586,10 @@ const progressPct = computed(() => totalCount ? Math.round(purchasedTotal.value 
   font-family: inherit;
   font-size: 0.85rem;
   font-weight: 500;
+  line-height: 1;
   border-radius: 999px;
   cursor: pointer;
-  transition: all 0.22s var(--ease);
+  transition: background 0.22s var(--ease), color 0.22s var(--ease), border-color 0.22s var(--ease);
 
   &:hover {
     color: var(--text);
@@ -656,12 +664,24 @@ const progressPct = computed(() => totalCount ? Math.round(purchasedTotal.value 
   transform: translateY(-6px) scale(0.97);
 }
 
+.owner-label {
+  margin-left: 2px;
+}
+
 @media (max-width: 600px) {
-  .owner-zone {
-    width: 100%;
-    margin-left: 0;
-    margin-top: 8px;
-    justify-content: flex-end;
+  // На мобилке оставляем только иконку-замок
+  .owner-label {
+    display: none;
+  }
+
+  .owner-btn {
+    width: 40px;
+    height: 40px;
+    min-height: 40px;
+    padding: 0;
+    justify-content: center;
+    gap: 0;
+    font-size: 1.05rem;
   }
 }
 
@@ -903,6 +923,7 @@ const progressPct = computed(() => totalCount ? Math.round(purchasedTotal.value 
   color: var(--text-muted);
   font-family: inherit;
   font-size: 0.85rem;
+  white-space: nowrap;
   cursor: pointer;
   border-radius: 999px;
   transition: all 0.22s var(--ease);
@@ -910,6 +931,60 @@ const progressPct = computed(() => totalCount ? Math.round(purchasedTotal.value 
   &:hover {
     color: var(--danger);
     background: rgba(255, 84, 112, 0.1);
+  }
+}
+
+// --- Мобильная раскладка фильтров ---
+@media (max-width: 640px) {
+  .filter-row,
+  .controls-row {
+    margin-bottom: 14px;
+  }
+
+  // Чипы тегов — одной строкой с горизонтальным скроллом
+  .chips {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    // лёгкий отступ, чтобы тени/ховеры не обрезались
+    padding: 2px;
+    margin: -2px;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .chip {
+    flex: 0 0 auto;
+  }
+
+  // Табы — в столбик на всю ширину
+  .tabs {
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .tab {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  // Дропдауны (год и сортировка) — на всю ширину, аккуратными блоками
+  .filter-right {
+    width: 100%;
+  }
+
+  .filter-right .dd {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .controls-row .dd {
+    width: 100%;
   }
 }
 

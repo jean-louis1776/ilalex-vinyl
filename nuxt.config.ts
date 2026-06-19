@@ -4,4 +4,11 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   components: true,
   css: ['~/styles/main.scss'],
+  app: {
+    head: {
+      link: [
+        { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
+      ],
+    },
+  },
 })
