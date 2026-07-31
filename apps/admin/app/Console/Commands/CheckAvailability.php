@@ -64,19 +64,15 @@ class CheckAvailability extends Command
                 continue;
             }
 
-            if ($state['sold_out'] && ! $vinyl->sold_out) {
+            $changed = $vinyl->applyAvailability($state, withPrice: ! $keepPrice);
+
+            if ($changed['became_sold_out']) {
                 $soldOut[] = "{$vinyl->artist} — {$vinyl->name}";
             }
 
-            $vinyl->sold_out = $state['sold_out'];
-
-            if (! $keepPrice && $state['price'] !== null && $state['price'] !== $vinyl->price) {
-                $priceChanged[] = "{$vinyl->artist} — {$vinyl->name}: {$vinyl->price} → {$state['price']} ₽";
-                $vinyl->price = $state['price'];
+            if ($changed['old_price'] !== null) {
+                $priceChanged[] = "{$vinyl->artist} — {$vinyl->name}: {$changed['old_price']} → {$vinyl->price} ₽";
             }
-
-            $vinyl->checked_at = now();
-            $vinyl->save();
 
             $bar->advance();
             // Пауза между запросами: сотни страниц подряд — уже нагрузка

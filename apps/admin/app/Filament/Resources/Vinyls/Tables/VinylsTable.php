@@ -3,9 +3,14 @@
 namespace App\Filament\Resources\Vinyls\Tables;
 
 use App\Support\CoverImage;
+use App\Support\StoreDetails;
+use Filament\Actions\BulkAction;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
+use Filament\Notifications\Notification;
+use Filament\Support\Icons\Heroicon;
+use Illuminate\Support\Collection;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
@@ -118,9 +123,89 @@ class VinylsTable
                 EditAction::make(),
             ])
             ->toolbarActions([
+                self::checkAvailabilityAction(),
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),
                 ]),
             ]);
+    }
+
+    /**
+     * За раз проверяем не больше этого числа: каждая пластинка — это запрос
+     * к магазину с паузой, и полторы сотни подряд не уложатся в веб-запрос.
+     */
+    private const BATCH_LIMIT = 50;
+
+    /** Пауза между запросами, чтобы не выглядеть перебором страниц. */
+    private const REQUEST_DELAY_MS = 400;
+
+    /**
+     * Проверяет выделенные пластинки: обновляет отметку «выкуплен» и цену
+     * по странице магазина. Полный обход всех пластинок делает команда
+     * app:check-availability — она не ограничена временем веб-запроса.
+     */
+    private static function checkAvailabilityAction(): BulkAction
+    {
+        return BulkAction::make('checkAvailability')
+            ->label('Проверить наличие')
+            ->icon(Heroicon::OutlinedArrowPath)
+            ->color('gray')
+            ->modalHeading('Проверить наличие в магазине')
+            ->modalDescription('Обновим отметку «выкуплен» и цену по страницам магазина. Занимает примерно полсекунды на пластинку.')
+            ->modalSubmitActionLabel('Проверить')
+            ->deselectRecordsAfterCompletion()
+            ->action(function (Collection $records) {
+                if ($records->count() > self::BATCH_LIMIT) {
+                    Notification::make()
+                        ->title('Слишком много за один раз')
+                        ->body('Выберите не больше '.self::BATCH_LIMIT.' пластинок — иначе проверка не успеет завершиться. Для полного обхода есть команда app:check-availability.')
+                        ->warning()
+                        ->send();
+
+                    return;
+                }
+
+                $store = app(StoreDetails::class);
+                $soldOut = [];
+                $priceChanged = [];
+                $failed = 0;
+
+                foreach ($records as $vinyl) {
+                    $state = $store->fetchAvailability($vinyl->link);
+
+                    if ($state === null) {
+                        $failed++;
+                    } else {
+                        $changed = $vinyl->applyAvailability($state);
+
+                        if ($changed['became_sold_out']) {
+                            $soldOut[] = "{$vinyl->artist} — {$vinyl->name}";
+                        }
+                        if ($changed['old_price'] !== null) {
+                            $priceChanged[] = "{$vinyl->artist} — {$vinyl->name}: {$changed['old_price']} → {$vinyl->price} ₽";
+                        }
+                    }
+
+                    usleep(self::REQUEST_DELAY_MS * 1000);
+                }
+
+                $lines = [];
+                if ($soldOut) {
+                    $lines[] = 'Выкупили: '.implode('; ', $soldOut);
+                }
+                if ($priceChanged) {
+                    $lines[] = 'Цены: '.implode('; ', $priceChanged);
+                }
+                if ($failed) {
+                    $lines[] = "Не удалось прочитать страниц: {$failed}";
+                }
+
+                Notification::make()
+                    ->title($lines ? 'Проверено, есть изменения' : 'Проверено, всё по-прежнему')
+                    ->body($lines ? implode(' • ', $lines) : 'Наличие и цены совпадают с магазином.')
+                    ->{$soldOut || $failed ? 'warning' : 'success'}()
+                    ->persistent()
+                    ->send();
+            });
     }
 }

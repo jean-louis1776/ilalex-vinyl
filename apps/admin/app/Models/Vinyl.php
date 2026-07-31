@@ -66,6 +66,32 @@ class Vinyl extends Model
         });
     }
 
+    /**
+     * Применяет к пластинке то, что вычитали со страницы магазина.
+     * Одним методом пользуются и команда app:check-availability, и кнопка
+     * «Проверить наличие» в админке — чтобы они не разъезжались в поведении.
+     *
+     * @param  array{sold_out: bool, price: ?int}  $state
+     * @return array{became_sold_out: bool, old_price: ?int}  что именно изменилось
+     */
+    public function applyAvailability(array $state, bool $withPrice = true): array
+    {
+        $becameSoldOut = $state['sold_out'] && ! $this->sold_out;
+        $oldPrice = null;
+
+        $this->sold_out = $state['sold_out'];
+
+        if ($withPrice && $state['price'] !== null && $state['price'] !== $this->price) {
+            $oldPrice = $this->price;
+            $this->price = $state['price'];
+        }
+
+        $this->checked_at = now();
+        $this->save();
+
+        return ['became_sold_out' => $becameSoldOut, 'old_price' => $oldPrice];
+    }
+
     /** Год, по которому пластинка сортируется и фильтруется на сайте. */
     public function getYearAttribute(): ?int
     {
