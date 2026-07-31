@@ -181,8 +181,9 @@ ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT SELECT ON TABLES TO api_reader;
 
 **3. Сайт**
 
-Деплоится на Vercel из папки `apps/web`. Задайте `NUXT_PUBLIC_API_BASE` —
-адрес сервиса API на Render.
+Деплоится на Vercel из папки `apps/web`. Адрес API по умолчанию зашит в
+`nuxt.config.ts` (прод на Render), так что дополнительная настройка не нужна.
+Чтобы направить сайт на другой бэкенд, задайте `NUXT_PUBLIC_API_BASE`.
 
 На бесплатном тарифе Render сервисы засыпают после простоя, поэтому первая
 загрузка сайта может занять до минуты — всё это время показывается лоадер.
