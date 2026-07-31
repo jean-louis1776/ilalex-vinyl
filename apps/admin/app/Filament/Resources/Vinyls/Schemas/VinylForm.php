@@ -178,11 +178,6 @@ class VinylForm
                             ->label('Показывать на сайте')
                             ->default(true)
                             ->helperText('Выключите, чтобы придержать пластинку черновиком'),
-                        TextInput::make('sort_order')
-                            ->label('Порядок')
-                            ->numeric()
-                            ->default(0)
-                            ->helperText('Меньше — выше в списке при сортировке «по умолчанию»'),
                     ]),
             ]);
     }

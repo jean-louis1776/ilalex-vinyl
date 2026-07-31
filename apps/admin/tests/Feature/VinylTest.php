@@ -51,6 +51,22 @@ class VinylTest extends TestCase
         $this->assertNull(CoverImage::proxy(null));
     }
 
+    /** Поля «Порядок» в форме нет — новая пластинка сама встаёт в конец. */
+    public function test_sort_order_is_assigned_automatically(): void
+    {
+        $first = $this->makeVinyl();
+        $second = $this->makeVinyl(['name' => 'Второй']);
+
+        $this->assertSame($first->sort_order + 1, $second->sort_order);
+    }
+
+    /** Явно заданный порядок (например, из сидера) не перетирается. */
+    public function test_explicit_sort_order_is_kept(): void
+    {
+        $this->assertSame(0, $this->makeVinyl(['sort_order' => 0])->sort_order);
+        $this->assertSame(42, $this->makeVinyl(['name' => 'Другой', 'sort_order' => 42])->sort_order);
+    }
+
     public function test_year_falls_back_from_original_to_repress(): void
     {
         $this->assertSame(1984, $this->makeVinyl(['original_year' => 1984, 'repress_year' => 2015])->year);

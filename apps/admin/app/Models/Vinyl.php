@@ -51,6 +51,15 @@ class Vinyl extends Model
                 $vinyl->purchased_at = $vinyl->purchased ? now() : null;
             }
         });
+
+        // Порядок считается сам: новая пластинка встаёт в конец списка.
+        // В форме этого поля нет — на сортировку каталога оно не влияет,
+        // им задаётся только порядок строк в таблице админки.
+        static::creating(function (Vinyl $vinyl): void {
+            if (blank($vinyl->sort_order)) {
+                $vinyl->sort_order = (int) static::max('sort_order') + 1;
+            }
+        });
     }
 
     /** Год, по которому пластинка сортируется и фильтруется на сайте. */
