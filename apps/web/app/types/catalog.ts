@@ -1,6 +1,6 @@
 export type SortKey = 'default' | 'price-asc' | 'price-desc' | 'year-asc' | 'year-desc'
 export type TabKey = 'all' | 'not-purchased' | 'purchased'
-export type TagKey = 'important' | 'original' | 'repress' | 'sealed'
+export type TagKey = 'important' | 'original' | 'repress' | 'sealed' | 'available'
 
 /** Одна пластинка в том виде, в каком её отдаёт API. */
 export interface Vinyl {
@@ -15,6 +15,8 @@ export interface Vinyl {
   repress: number | null
   sealed: boolean
   purchased: boolean
+  /** Лот выкупили в магазине — купить эту пластинку уже негде. */
+  soldOut: boolean
 }
 
 export interface CatalogMeta {

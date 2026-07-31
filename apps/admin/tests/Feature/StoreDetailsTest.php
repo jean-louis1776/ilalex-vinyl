@@ -79,6 +79,40 @@ class StoreDetailsTest extends TestCase
         $this->assertNull((new StoreDetails)->parse('<html><body>Страница не найдена</body></html>'));
     }
 
+    public function test_reads_an_available_lot_with_its_price(): void
+    {
+        $state = (new StoreDetails)->parseAvailability(
+            '<div>2860₽ −15% Оригинал 1984 В корзину, 2431 ₽ В корзине , 2431 ₽ В наличии на складе</div>',
+        );
+
+        $this->assertFalse($state['sold_out']);
+        // Берём цену со скидкой — ровно ту, что платит покупатель
+        $this->assertSame(2431, $state['price']);
+    }
+
+    public function test_reads_a_sold_out_lot_with_its_last_price(): void
+    {
+        $state = (new StoreDetails)->parseAvailability(
+            '<div>810₽ −15% Оригинал 1988 Пластинку выкупили. Последняя цена — 689 ₽</div>',
+        );
+
+        $this->assertTrue($state['sold_out']);
+        $this->assertSame(689, $state['price']);
+    }
+
+    public function test_handles_prices_with_a_thousands_separator(): void
+    {
+        $state = (new StoreDetails)->parseAvailability('<div>В корзину, 12 500 ₽ В наличии</div>');
+
+        $this->assertSame(12500, $state['price']);
+    }
+
+    /** Без обоих признаков статус неизвестен — лучше null, чем догадка. */
+    public function test_returns_null_when_availability_is_unclear(): void
+    {
+        $this->assertNull((new StoreDetails)->parseAvailability('<div>Страница не найдена</div>'));
+    }
+
     public function test_rejects_non_http_links(): void
     {
         $store = new StoreDetails;

@@ -29,6 +29,8 @@ export interface VinylRow {
   repress: number | null
   sealed: boolean
   purchased: boolean
+  /** Лот выкуплен в магазине — купить уже негде. */
+  soldOut: boolean
 }
 
 /** Карточка пластинки — то же плюс поля, нужные только на её странице. */
@@ -92,6 +94,7 @@ function buildFilters(query: CatalogQuery): { sql: string; params: unknown[] } {
     if (tag === 'sealed') conditions.push('sealed')
     if (tag === 'original') conditions.push('original_year IS NOT NULL')
     if (tag === 'repress') conditions.push('repress_year IS NOT NULL')
+    if (tag === 'available') conditions.push('NOT sold_out')
   }
 
   if (query.decade !== null) {
@@ -149,6 +152,7 @@ export async function fetchCatalog(query: CatalogQuery): Promise<CatalogPage> {
   const pageParams = [...params, query.perPage, (query.page - 1) * query.perPage]
   const itemsResult = await pool.query<VinylRow>(
     `SELECT id, artist, name, price, link, image, important, sealed, purchased,
+            sold_out AS "soldOut",
             original_year AS original, repress_year AS repress
      FROM vinyls
      WHERE ${where}${tabCondition}
@@ -179,6 +183,7 @@ export async function fetchVinyl(
 ): Promise<{ vinyl: VinylDetailRow; related: VinylRow[] } | null> {
   const { rows } = await pool.query<VinylDetailRow>(
     `SELECT id, artist, name, price, link, image, important, sealed, purchased,
+            sold_out AS "soldOut",
             original_year AS original, repress_year AS repress,
             description, label, country, genre, condition
      FROM vinyls
@@ -193,6 +198,7 @@ export async function fetchVinyl(
   // десятилетия, чтобы блок «Ещё из коллекции» не пустовал
   const { rows: related } = await pool.query<VinylRow>(
     `SELECT id, artist, name, price, link, image, important, sealed, purchased,
+            sold_out AS "soldOut",
             original_year AS original, repress_year AS repress
      FROM vinyls
      WHERE is_published AND id <> $1

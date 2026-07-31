@@ -71,6 +71,11 @@ const highlight = (text: string): string => {
           <path d="M12 2.6l2.7 5.9 6.4.8-4.7 4.4 1.2 6.4L12 16.9 6.4 20.1l1.2-6.4L2.9 9.3l6.4-.8z" />
         </svg>
       </span>
+      <!-- Лот выкупили в магазине. У купленных не показываем: там своя
+           плашка, и «продан» уже не новость -->
+      <span v-if="card.soldOut && !isPurchased" class="flag-sold" title="Лот выкуплен в магазине">
+        Продан
+      </span>
       <div class="img-shade"></div>
       <Transition name="overlay">
         <div v-if="isPurchased" class="purchased-overlay">
@@ -90,8 +95,9 @@ const highlight = (text: string): string => {
       </div>
 
       <div class="card-footer">
-        <span class="vinyl-price">{{ card.price }} ₽</span>
+        <span class="vinyl-price" :class="{ 'is-stale': card.soldOut && !isPurchased }">{{ card.price }} ₽</span>
         <span v-if="isPurchased" class="buy-toggle is-done static">✓ Куплен</span>
+        <span v-else-if="card.soldOut" class="buy-toggle is-sold static">Нет в продаже</span>
       </div>
     </div>
   </NuxtLink>
@@ -230,6 +236,26 @@ const highlight = (text: string): string => {
   }
 }
 
+// Лента «Продан» — по диагонали в правом верхнем углу обложки
+.flag-sold {
+  position: absolute;
+  top: 12px;
+  right: -34px;
+  z-index: 2;
+  width: 124px;
+  padding: 4px 0;
+  text-align: center;
+  transform: rotate(38deg);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #fff;
+  background: linear-gradient(135deg, #ff5470, #c9184a);
+  box-shadow: 0 4px 14px -3px rgba(255, 84, 112, 0.65);
+}
+
 .purchased-overlay {
   position: absolute;
   inset: 0;
@@ -355,6 +381,13 @@ const highlight = (text: string): string => {
   font-weight: 700;
   color: var(--text);
 
+  // Последняя known цена выкупленного лота — уже не актуальная
+  &.is-stale {
+    color: var(--text-muted);
+    text-decoration: line-through;
+    text-decoration-color: rgba(255, 84, 112, 0.6);
+  }
+
   @media (max-width: 768px) {
     font-size: 16px;
   }
@@ -386,14 +419,30 @@ const highlight = (text: string): string => {
     border-color: rgba(74, 222, 128, 0.35);
   }
 
+  // Лот выкуплен — цена уже историческая, приглушаем
+  &.is-sold {
+    color: var(--text-muted);
+    background: transparent;
+    border-color: var(--border);
+  }
+
   &.static {
     cursor: default;
 
     &:hover {
       transform: none;
+    }
+
+    &.is-done:hover {
       color: var(--green);
       background: rgba(74, 222, 128, 0.12);
       border-color: rgba(74, 222, 128, 0.35);
+    }
+
+    &.is-sold:hover {
+      color: var(--text-muted);
+      background: transparent;
+      border-color: var(--border);
     }
   }
 

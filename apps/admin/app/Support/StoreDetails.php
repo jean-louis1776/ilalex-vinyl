@@ -20,11 +20,68 @@ class StoreDetails
     private const GRADES = 'SS|M-|M|NM|EX\+\+|EX\+|EX|VG\+\+|VG\+|VG|G\+|G|P';
 
     /**
+     * Наличие и цена — то, что меняется со временем и требует пересверки.
+     *
+     * @return array{sold_out: bool, price: ?int}|null
+     *         null — страницу не удалось получить или разобрать
+     */
+    public function fetchAvailability(?string $url): ?array
+    {
+        $html = $this->download($url);
+
+        return $html === null ? null : $this->parseAvailability($html);
+    }
+
+    /** @return array{sold_out: bool, price: ?int}|null */
+    public function parseAvailability(string $html): ?array
+    {
+        $text = $this->plainText($html);
+
+        // Признаки взаимоисключающие: либо лот можно положить в корзину,
+        // либо на его месте написано, что пластинку выкупили
+        $soldOut = str_contains($text, 'Пластинку выкупили');
+        $onSale = str_contains($text, 'В корзину') || str_contains($text, 'В наличии');
+
+        if (! $soldOut && ! $onSale) {
+            return null;
+        }
+
+        return [
+            'sold_out' => $soldOut,
+            'price' => $soldOut
+                // «Пластинку выкупили. Последняя цена — 689 ₽»
+                ? $this->price($text, '/Последняя цена\s*[—–-]\s*([\d\s]+)\s*₽/u')
+                // «В корзину, 2431 ₽» — цена уже со скидкой, её же видит покупатель
+                : $this->price($text, '/В корзину,?\s*([\d\s]+)\s*₽/u'),
+        ];
+    }
+
+    private function price(string $text, string $pattern): ?int
+    {
+        if (! preg_match($pattern, $text, $m)) {
+            return null;
+        }
+
+        $digits = preg_replace('/\D/', '', $m[1]) ?? '';
+
+        return $digits === '' ? null : (int) $digits;
+    }
+
+    /**
      * @return array{genre: ?string, country: ?string, label: ?string, condition: ?string}|null
      *         null — страницу не удалось получить или разобрать
      */
     public function fetch(?string $url): ?array
     {
+        $html = $this->download($url);
+
+        return $html === null ? null : $this->parse($html);
+    }
+
+    /** Скачивает страницу магазина; null — ссылка негодная или сайт не ответил. */
+    private function download(?string $url): ?string
+    {
+        // В сеть ходим только по http(s): javascript:/file: сюда попасть не должны
         if (! $url || ! preg_match('#^https?://#i', $url)) {
             return null;
         }
@@ -38,11 +95,7 @@ class StoreDetails
             return null;
         }
 
-        if (! $response->successful()) {
-            return null;
-        }
-
-        return $this->parse($response->body());
+        return $response->successful() ? $response->body() : null;
     }
 
     /** @return array{genre: ?string, country: ?string, label: ?string, condition: ?string}|null */

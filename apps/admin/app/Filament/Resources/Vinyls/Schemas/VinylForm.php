@@ -20,6 +20,16 @@ use Filament\Support\Icons\Heroicon;
 
 class VinylForm
 {
+    /** Одна и та же беда для всех кнопок: страница магазина не прочиталась. */
+    private static function pageUnreadable(): void
+    {
+        Notification::make()
+            ->title('Не удалось прочитать страницу магазина')
+            ->body('Проверьте ссылку — она должна вести на карточку товара.')
+            ->danger()
+            ->send();
+    }
+
     public static function configure(Schema $schema): Schema
     {
         return $schema
@@ -41,7 +51,42 @@ class VinylForm
                             ->required()
                             ->numeric()
                             ->minValue(0)
-                            ->default(0),
+                            ->default(0)
+                            ->suffixAction(
+                                // Сверяет цену с магазином, не трогая остальное
+                                Action::make('checkPrice')
+                                    ->label('Проверить цену')
+                                    ->icon(Heroicon::OutlinedArrowPath)
+                                    ->action(function (Get $get, Set $set) {
+                                        $state = app(StoreDetails::class)->fetchAvailability($get('link'));
+
+                                        if ($state === null) {
+                                            self::pageUnreadable();
+
+                                            return;
+                                        }
+
+                                        if ($state['sold_out']) {
+                                            $set('sold_out', true);
+                                        }
+
+                                        if ($state['price'] === null) {
+                                            Notification::make()->title('Цена на странице не найдена')->warning()->send();
+
+                                            return;
+                                        }
+
+                                        $was = (int) $get('price');
+                                        $set('price', $state['price']);
+
+                                        Notification::make()
+                                            ->title($was === $state['price']
+                                                ? 'Цена не изменилась: '.$state['price'].' ₽'
+                                                : "Цена обновлена: {$was} → {$state['price']} ₽")
+                                            ->success()
+                                            ->send();
+                                    }),
+                            ),
                         TextInput::make('link')
                             ->label('Ссылка на магазин')
                             ->helperText('Открывается по кнопке «Купить» на странице пластинки')
@@ -65,11 +110,7 @@ class VinylForm
                                 $details = app(StoreDetails::class)->fetch($get('link'));
 
                                 if ($details === null) {
-                                    Notification::make()
-                                        ->title('Не удалось прочитать страницу магазина')
-                                        ->body('Проверьте ссылку — она должна вести на карточку товара.')
-                                        ->danger()
-                                        ->send();
+                                    self::pageUnreadable();
 
                                     return;
                                 }
@@ -178,6 +219,38 @@ class VinylForm
                             ->label('Показывать на сайте')
                             ->default(true)
                             ->helperText('Выключите, чтобы придержать пластинку черновиком'),
+                        Toggle::make('sold_out')
+                            ->label('Лот выкуплен')
+                            ->helperText('Забрали в магазине. На сайте кнопка «Купить» станет неактивной')
+                            ->live(),
+                    ])
+                    ->footerActions([
+                        // Проверяет магазин и сама переключает тумблер выше
+                        Action::make('checkAvailability')
+                            ->label('Проверить наличие')
+                            ->icon(Heroicon::OutlinedArrowPath)
+                            ->color('gray')
+                            ->action(function (Get $get, Set $set) {
+                                $state = app(StoreDetails::class)->fetchAvailability($get('link'));
+
+                                if ($state === null) {
+                                    self::pageUnreadable();
+
+                                    return;
+                                }
+
+                                $set('sold_out', $state['sold_out']);
+
+                                if ($state['price'] !== null) {
+                                    $set('price', $state['price']);
+                                }
+
+                                Notification::make()
+                                    ->title($state['sold_out'] ? 'Лот выкуплен' : 'Лот ещё в продаже')
+                                    ->body($state['price'] !== null ? 'Цена в магазине: '.$state['price'].' ₽' : null)
+                                    ->{$state['sold_out'] ? 'warning' : 'success'}()
+                                    ->send();
+                            }),
                     ]),
             ]);
     }

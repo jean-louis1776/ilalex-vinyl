@@ -17,6 +17,8 @@ class Vinyl extends Model
         'country',
         'genre',
         'condition',
+        'sold_out',
+        'checked_at',
         'original_year',
         'repress_year',
         'important',
@@ -37,6 +39,8 @@ class Vinyl extends Model
             'sealed' => 'boolean',
             'purchased' => 'boolean',
             'purchased_at' => 'datetime',
+            'sold_out' => 'boolean',
+            'checked_at' => 'datetime',
             'is_published' => 'boolean',
             'sort_order' => 'integer',
         ];

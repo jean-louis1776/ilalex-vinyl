@@ -10,6 +10,7 @@ export const SORT_OPTIONS: { value: SortKey; label: string }[] = [
 ]
 
 export const TAG_DEFS: { key: TagKey; label: string }[] = [
+  { key: 'available', label: 'Ещё в продаже' },
   { key: 'important', label: 'В первую очередь' },
   { key: 'original', label: 'Оригинал' },
   { key: 'repress', label: 'Переиздание' },

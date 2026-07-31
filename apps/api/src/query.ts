@@ -7,7 +7,7 @@
 
 export const SORT_KEYS = ['default', 'price-asc', 'price-desc', 'year-asc', 'year-desc'] as const
 export const TAB_KEYS = ['all', 'not-purchased', 'purchased'] as const
-export const TAG_KEYS = ['important', 'original', 'repress', 'sealed'] as const
+export const TAG_KEYS = ['important', 'original', 'repress', 'sealed', 'available'] as const
 
 export type SortKey = (typeof SORT_KEYS)[number]
 export type TabKey = (typeof TAB_KEYS)[number]

@@ -36,6 +36,14 @@ const coverErrored = ref(false)
 const year = computed(() => vinyl.value?.original ?? vinyl.value?.repress ?? null)
 const fmt = (n: number) => n.toLocaleString('ru-RU')
 
+const priceLabel = computed(() => {
+  const v = vinyl.value
+  if (!v) return 'Цена'
+  if (v.purchased) return 'Цена покупки'
+  // Лот выкупили — цена осталась только как память о нём
+  return v.soldOut ? 'Последняя цена' : 'Цена'
+})
+
 useHead(() => ({
   title: vinyl.value ? `${vinyl.value.artist} — ${vinyl.value.name} | ILALEX Vinyl` : 'ILALEX Vinyl',
   meta: [{ name: 'description', content: vinyl.value?.description ?? '' }],
@@ -139,14 +147,44 @@ const descriptionParagraphs = computed(() => {
             <span v-if="vinyl.sealed" class="tag tag-sealed">Запечатан</span>
             <span v-if="vinyl.important" class="tag tag-important">В первую очередь</span>
             <span v-if="vinyl.purchased" class="tag tag-purchased">✓ Куплен</span>
+            <span v-else-if="vinyl.soldOut" class="tag tag-sold">Нет в продаже</span>
           </div>
 
-          <div class="buy-block">
+          <!--
+            Три разных случая, и путать их нельзя:
+            1. пластинка уже в коллекции — покупать нечего, это победа;
+            2. лот выкупили в магазине (кто-то другой) — купить негде;
+            3. лот в продаже — зовём покупать.
+          -->
+          <div class="buy-block" :class="{ 'is-sold': vinyl.soldOut && !vinyl.purchased }">
             <div class="price-wrap">
-              <span class="price-label">Цена</span>
-              <span class="price">{{ fmt(vinyl.price) }} ₽</span>
+              <span class="price-label">{{ priceLabel }}</span>
+              <span class="price" :class="{ 'is-stale': vinyl.soldOut && !vinyl.purchased }">
+                {{ fmt(vinyl.price) }} ₽
+              </span>
             </div>
-            <a :href="vinyl.link" target="_blank" rel="noopener noreferrer" class="btn-buy">
+
+            <div v-if="vinyl.purchased" class="status-note">
+              <span class="owned-badge">✓ Уже в коллекции</span>
+              <a :href="vinyl.link" target="_blank" rel="noopener noreferrer" class="quiet-link">
+                Страница в магазине
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <path d="M7 17L17 7M17 7H9M17 7v8" />
+                </svg>
+              </a>
+            </div>
+
+            <div v-else-if="vinyl.soldOut" class="status-note">
+              <span class="sold-badge">Лот выкуплен</span>
+              <a :href="vinyl.link" target="_blank" rel="noopener noreferrer" class="quiet-link">
+                Посмотреть в магазине
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <path d="M7 17L17 7M17 7H9M17 7v8" />
+                </svg>
+              </a>
+            </div>
+
+            <a v-else :href="vinyl.link" target="_blank" rel="noopener noreferrer" class="btn-buy">
               Купить в магазине
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
                 <path d="M7 17L17 7M17 7H9M17 7v8" />
@@ -450,6 +488,12 @@ const descriptionParagraphs = computed(() => {
     background: rgba(74, 222, 128, 0.12);
     border-color: rgba(74, 222, 128, 0.35);
   }
+
+  &-sold {
+    color: var(--danger);
+    background: rgba(255, 84, 112, 0.1);
+    border-color: rgba(255, 84, 112, 0.3);
+  }
 }
 
 .buy-block {
@@ -488,6 +532,13 @@ const descriptionParagraphs = computed(() => {
   font-weight: 700;
   line-height: 1;
 
+  // Цена выкупленного лота — историческая, а не та, что можно заплатить
+  &.is-stale {
+    color: var(--text-muted);
+    text-decoration: line-through;
+    text-decoration-color: rgba(255, 84, 112, 0.55);
+  }
+
   @media (max-width: 480px) {
     font-size: 1.55rem;
   }
@@ -523,6 +574,65 @@ const descriptionParagraphs = computed(() => {
     margin-left: 0;
     width: 100%;
     justify-content: center;
+  }
+}
+
+// Блок вместо кнопки покупки: пластинка уже куплена или лот выкупили
+.status-note {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+  margin-left: auto;
+
+  @media (max-width: 480px) {
+    margin-left: 0;
+    align-items: flex-start;
+  }
+}
+
+.sold-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 12px 24px;
+  border-radius: 999px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: var(--danger);
+  background: rgba(255, 84, 112, 0.1);
+  border: 1px solid rgba(255, 84, 112, 0.32);
+}
+
+.owned-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 12px 24px;
+  border-radius: 999px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: var(--green);
+  background: rgba(74, 222, 128, 0.12);
+  border: 1px solid rgba(74, 222, 128, 0.35);
+}
+
+.quiet-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.22s var(--ease);
+
+  svg {
+    width: 13px;
+    height: 13px;
+  }
+
+  &:hover {
+    color: var(--text-soft);
   }
 }
 

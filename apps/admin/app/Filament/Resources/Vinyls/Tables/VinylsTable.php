@@ -58,6 +58,20 @@ class VinylsTable
                 ToggleColumn::make('purchased')
                     ->label('Куплено')
                     ->sortable(),
+                IconColumn::make('sold_out')
+                    ->label('Выкуплен')
+                    ->boolean()
+                    ->trueIcon('heroicon-o-x-circle')
+                    ->falseIcon('heroicon-o-shopping-cart')
+                    ->trueColor('danger')
+                    ->falseColor('gray')
+                    ->tooltip(fn ($record) => $record->sold_out ? 'Купить уже негде' : 'Ещё в продаже')
+                    ->sortable(),
+                TextColumn::make('checked_at')
+                    ->label('Проверено')
+                    ->since()
+                    ->placeholder('никогда')
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('purchased_at')
                     ->label('Когда куплено')
                     ->dateTime('d.m.Y')
@@ -89,6 +103,11 @@ class VinylsTable
                     ->placeholder('Все')
                     ->trueLabel('Только запечатанные')
                     ->falseLabel('Кроме запечатанных'),
+                TernaryFilter::make('sold_out')
+                    ->label('Выкуплен в магазине')
+                    ->placeholder('Все')
+                    ->trueLabel('Только выкупленные')
+                    ->falseLabel('Только доступные'),
                 TernaryFilter::make('is_published')
                     ->label('Показывается на сайте')
                     ->placeholder('Все')
