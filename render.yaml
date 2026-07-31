@@ -1,0 +1,83 @@
+# Render Blueprint: разворачивает админку и публичный API как бесплатные
+# docker-сервисы. База живёт на Neon (бесплатный Postgres самого Render
+# протухает через 30 дней — на него не рассчитываем).
+#
+# Как применить: Render Dashboard → New → Blueprint → указать этот репозиторий.
+# Секреты вводятся в дашборде — это все значения с sync: false.
+services:
+  - type: web
+    name: ilalex-vinyl-admin
+    runtime: docker
+    dockerfilePath: ./apps/admin/Dockerfile
+    dockerContext: ./apps/admin
+    region: frankfurt # тот же регион, что и база в Neon
+    plan: free
+    healthCheckPath: /up
+    envVars:
+      - key: APP_NAME
+        value: "Винил — админка"
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: "false"
+      - key: APP_KEY
+        sync: false # base64:… — сгенерировать локально:
+                    # docker compose exec admin php artisan key:generate --show
+      - key: APP_URL
+        sync: false # https://ilalex-vinyl-admin.onrender.com (вписать после первого деплоя)
+      - key: APP_LOCALE
+        value: ru
+      - key: APP_TIMEZONE
+        value: Europe/Moscow
+      - key: LOG_CHANNEL
+        value: stderr
+      - key: LOG_LEVEL
+        value: info
+      - key: DB_CONNECTION
+        value: pgsql
+      - key: DB_HOST
+        sync: false # хост Neon, например ep-xxx.eu-central-1.aws.neon.tech
+      - key: DB_PORT
+        value: "5432"
+      - key: DB_DATABASE
+        sync: false
+      - key: DB_USERNAME
+        sync: false
+      - key: DB_PASSWORD
+        sync: false
+      - key: DB_SSLMODE
+        value: require
+      - key: SESSION_DRIVER
+        value: database
+      - key: SESSION_ENCRYPT
+        value: "true"
+      - key: SESSION_SECURE_COOKIE
+        value: "true"
+      - key: CACHE_STORE
+        value: database
+      - key: QUEUE_CONNECTION
+        value: database
+      - key: HASH_DRIVER
+        value: argon2id
+      - key: FILESYSTEM_DISK
+        value: local
+      # Первого админа можно завести без интерактивной консоли: временно
+      # добавьте сюда ADMIN_EMAIL и ADMIN_PASSWORD — энтрипоинт создаст
+      # пользователя при старте и никогда не перезапишет существующего.
+      # После первого входа переменные лучше удалить.
+
+  - type: web
+    name: ilalex-vinyl-api
+    runtime: docker
+    dockerfilePath: ./apps/api/Dockerfile
+    dockerContext: ./apps/api
+    region: frankfurt # тот же регион, что и база в Neon
+    plan: free
+    healthCheckPath: /healthz
+    envVars:
+      - key: DATABASE_URL
+        # Строка подключения Neon для read-only роли api_reader
+        # (формат — в разделе «Деплой» в README.md)
+        sync: false
+      - key: CORS_ORIGINS
+        value: "*"

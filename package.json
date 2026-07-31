@@ -1,22 +1,13 @@
 {
-  "name": "ilalex-vinyl",
-  "type": "module",
+  "name": "ilalex-vinyl-monorepo",
   "private": true,
+  "workspaces": [
+    "apps/web"
+  ],
   "scripts": {
-    "build": "nuxt build",
-    "dev": "nuxt dev",
-    "generate": "nuxt generate",
-    "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
-  },
-  "dependencies": {
-    "@upstash/redis": "^1.38.0",
-    "nuxt": "^4.2.2",
-    "vue": "^3.5.26",
-    "vue-router": "^4.6.4"
-  },
-  "devDependencies": {
-    "@types/node": "^26.0.0",
-    "sass-embedded": "^1.97.2"
+    "dev:web": "yarn workspace @ilalex-vinyl/web dev",
+    "build:web": "yarn workspace @ilalex-vinyl/web build",
+    "dev:api": "cd apps/api && yarn dev",
+    "build:api": "cd apps/api && yarn build"
   }
 }
