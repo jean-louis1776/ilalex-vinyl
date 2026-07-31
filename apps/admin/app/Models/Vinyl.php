@@ -16,6 +16,7 @@ class Vinyl extends Model
         'label',
         'country',
         'genre',
+        'condition',
         'original_year',
         'repress_year',
         'important',

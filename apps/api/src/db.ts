@@ -37,6 +37,8 @@ export interface VinylDetailRow extends VinylRow {
   label: string | null
   country: string | null
   genre: string | null
+  /** Состояние винила и конверта по шкале Goldmine, например «EX+ / NM». */
+  condition: string | null
 }
 
 export interface CatalogCounts {
@@ -178,7 +180,7 @@ export async function fetchVinyl(
   const { rows } = await pool.query<VinylDetailRow>(
     `SELECT id, artist, name, price, link, image, important, sealed, purchased,
             original_year AS original, repress_year AS repress,
-            description, label, country, genre
+            description, label, country, genre, condition
      FROM vinyls
      WHERE id = $1 AND is_published`,
     [id],

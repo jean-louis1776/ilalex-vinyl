@@ -3,15 +3,20 @@
 namespace App\Filament\Resources\Vinyls\Schemas;
 
 use App\Support\CoverImage;
+use App\Support\StoreDetails;
+use Filament\Actions\Action;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
+use Filament\Notifications\Notification;
 use Filament\Schemas\Components\Grid;
 use Filament\Schemas\Components\Image;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Components\Text;
 use Filament\Schemas\Components\Utilities\Get;
+use Filament\Schemas\Components\Utilities\Set;
 use Filament\Schemas\Schema;
+use Filament\Support\Icons\Heroicon;
 
 class VinylForm
 {
@@ -49,6 +54,40 @@ class VinylForm
                 Section::make('Описание')
                     ->description('Показывается на странице пластинки. Если оставить пусто, сайт соберёт краткую сводку сам.')
                     ->columns(3)
+                    ->afterHeader([
+                        // Достаёт жанр, страну, лейбл и состояние прямо со
+                        // страницы магазина по ссылке из поля выше
+                        Action::make('fetchDetails')
+                            ->label('Подтянуть с сайта магазина')
+                            ->icon(Heroicon::OutlinedArrowDownTray)
+                            ->color('gray')
+                            ->action(function (Get $get, Set $set) {
+                                $details = app(StoreDetails::class)->fetch($get('link'));
+
+                                if ($details === null) {
+                                    Notification::make()
+                                        ->title('Не удалось прочитать страницу магазина')
+                                        ->body('Проверьте ссылку — она должна вести на карточку товара.')
+                                        ->danger()
+                                        ->send();
+
+                                    return;
+                                }
+
+                                $filled = [];
+                                foreach (['genre' => 'жанр', 'country' => 'страна', 'label' => 'лейбл', 'condition' => 'состояние'] as $field => $title) {
+                                    if ($details[$field] !== null) {
+                                        $set($field, $details[$field]);
+                                        $filled[] = $title;
+                                    }
+                                }
+
+                                Notification::make()
+                                    ->title($filled ? 'Заполнено: '.implode(', ', $filled) : 'На странице ничего не нашлось')
+                                    ->success()
+                                    ->send();
+                            }),
+                    ])
                     ->components([
                         Textarea::make('description')
                             ->label('Текст описания')
@@ -67,6 +106,11 @@ class VinylForm
                             ->label('Жанр')
                             ->maxLength(255)
                             ->placeholder('Synth-pop'),
+                        TextInput::make('condition')
+                            ->label('Состояние')
+                            ->maxLength(255)
+                            ->placeholder('NM / EX+')
+                            ->helperText('Винил / конверт по шкале Goldmine'),
                     ]),
 
                 Section::make('Обложка')

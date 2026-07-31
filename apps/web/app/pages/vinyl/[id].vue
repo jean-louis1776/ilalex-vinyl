@@ -10,6 +10,8 @@ interface VinylDetail extends Vinyl {
   label: string | null
   country: string | null
   genre: string | null
+  /** Винил / конверт по шкале Goldmine, например «EX+ / NM». */
+  condition: string | null
 }
 
 const route = useRoute()
@@ -153,7 +155,7 @@ const descriptionParagraphs = computed(() => {
           </div>
 
           <!-- Характеристики: показываем только заполненные -->
-          <dl v-if="year || vinyl.label || vinyl.country || vinyl.genre" class="specs">
+          <dl v-if="year || vinyl.label || vinyl.country || vinyl.genre || vinyl.condition" class="specs">
             <div v-if="year" class="spec">
               <dt>Год</dt>
               <dd>{{ year }}</dd>
@@ -169,6 +171,13 @@ const descriptionParagraphs = computed(() => {
             <div v-if="vinyl.country" class="spec">
               <dt>Страна</dt>
               <dd>{{ vinyl.country }}</dd>
+            </div>
+            <div v-if="vinyl.condition" class="spec">
+              <dt title="Оценка по шкале Goldmine">Состояние</dt>
+              <dd>
+                {{ vinyl.condition }}
+                <span class="spec-hint">винил / конверт</span>
+              </dd>
             </div>
           </dl>
         </div>
@@ -546,6 +555,14 @@ const descriptionParagraphs = computed(() => {
     font-size: 1.02rem;
     font-weight: 600;
   }
+}
+
+.spec-hint {
+  display: block;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 400;
+  color: var(--text-muted);
 }
 
 // --- Секции ---
